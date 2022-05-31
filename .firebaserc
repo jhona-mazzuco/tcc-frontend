@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tcc-front-bacdb": {
+      "hosting": {
+        "tcc-frontend": [
+          "tcc-front-bacdb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tcc-front-bacdb"
+  }
+}
