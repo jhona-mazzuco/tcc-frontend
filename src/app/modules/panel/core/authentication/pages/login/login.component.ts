@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { catchError, finalize, ReplaySubject, takeUntil, tap } from "rxjs";
-import { BaseCatchError } from "../../../../shared/models/base-catch-error.directive";
+import { catchError, finalize, takeUntil, tap } from "rxjs";
+import { BaseComponent } from "../../../../shared/models/base-component.directive";
 import { NotificationService } from "../../../../shared/services/notification.service";
 import { AuthService } from "../../services/auth.service";
 import { FEEDBACK_MESSAGES } from "./constants/feedback-messages.constant";
@@ -12,9 +12,8 @@ import { FEEDBACK_MESSAGES } from "./constants/feedback-messages.constant";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent extends BaseCatchError implements OnInit {
+export class LoginComponent extends BaseComponent implements OnInit {
   form!: FormGroup;
-  destroy$ = new ReplaySubject(1);
   loading!: boolean;
 
   constructor(
