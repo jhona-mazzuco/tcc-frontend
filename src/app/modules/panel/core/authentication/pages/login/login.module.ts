@@ -8,6 +8,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NotificationService } from "../../../../shared/services/notification.service";
+import { SendButtonModule } from "../../components/send-button/send-button.module";
 import { AuthService } from "../../services/auth.service";
 import { LoginComponent } from "./login.component";
 import { LoginRouting } from "./login.routing";
@@ -26,7 +27,8 @@ import { LoginRouting } from "./login.routing";
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    LoginRouting
+    SendButtonModule,
+    LoginRouting,
   ],
   providers: [AuthService, NotificationService]
 })
