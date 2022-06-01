@@ -21,7 +21,8 @@ describe('AuthService', () => {
           useValue: {
             currentUser: of(userMock).toPromise(),
             signInWithEmailAndPassword: () => of().toPromise(),
-            signOut: () => of().toPromise()
+            signOut: () => of().toPromise(),
+            sendPasswordResetEmail: (email: string) => of().toPromise()
           }
         }
       ]
@@ -59,5 +60,14 @@ describe('AuthService', () => {
     service.logout().subscribe(() => {});
 
     expect(signOutSpy).toHaveBeenCalled();
+  });
+
+  it('should be passwordRecovery', () => {
+    const email = 'test@email';
+    const sendPasswordResetEmailSpy = spyOn(authentication, 'sendPasswordResetEmail').and.returnValue(of().toPromise());
+
+    service.passwordRecovery(email).subscribe(() => {});
+
+    expect(sendPasswordResetEmailSpy).toHaveBeenCalledWith(email);
   });
 });
