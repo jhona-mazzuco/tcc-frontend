@@ -15,7 +15,7 @@ import { FEEDBACK_MESSAGES } from "./constant/feedback-messages.constant";
 
 import { ForgotPasswordComponent } from './forgot-password.component';
 
-describe('ForgivePasswordComponent', () => {
+describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
   let fb: FormBuilder;
