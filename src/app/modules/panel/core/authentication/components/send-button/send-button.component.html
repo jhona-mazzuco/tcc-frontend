@@ -1,0 +1,10 @@
+<button class="submit" type="submit" mat-stroked-button color="primary">
+    <span class="submit__container">
+      <ng-container *ngIf="!loading;else LoadingTemplate">
+        <ng-content></ng-content>
+      </ng-container>
+      <ng-template #LoadingTemplate>
+        <mat-spinner [diameter]="20" color="primary"></mat-spinner>
+      </ng-template>
+    </span>
+</button>

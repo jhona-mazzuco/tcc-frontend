@@ -1,12 +1,12 @@
-<div class="login">
+<div class="container">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Acesse sua conta:</mat-card-title>
     </mat-card-header>
 
-    <form class="login__card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="container__card" [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-card-content>
-        <div class="login__form">
+        <div class="container__form">
           <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
             <input matInput type="email" formControlName="email" />
@@ -20,20 +20,11 @@
       </mat-card-content>
 
       <mat-card-footer>
-        <div class="login__action">
-          <button type="submit" mat-stroked-button color="primary">
-            <span class="login__submit">
-              <ng-container *ngIf="!loading;else LoadingTemplate" >
-                Entrar
-              </ng-container>
-              <ng-template #LoadingTemplate>
-                <mat-spinner [diameter]="20" color="primary"></mat-spinner>
-              </ng-template>
-            </span>
-          </button>
+        <div class="container__action">
+          <app-send-button [loading]="loading">Entrar</app-send-button>
         </div>
 
-        <div class="login__forgot-password">
+        <div class="container__forgot-password">
           <a mat-button routerLink="recuperacao">Esqueceu sua senha?</a>
         </div>
       </mat-card-footer>

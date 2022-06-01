@@ -1,0 +1,11 @@
+.submit {
+  width: 125px;
+  height: 40px;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+}
