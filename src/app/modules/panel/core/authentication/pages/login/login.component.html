@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="login">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Acesse sua conta:</mat-card-title>
+    </mat-card-header>
+
+    <form class="login__card" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+        <div class="login__form">
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" formControlName="email" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" formControlName="password" />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer>
+        <div class="login__action">
+          <button type="submit" mat-stroked-button color="primary">
+            <span class="login__submit">
+              <ng-container *ngIf="!loading;else LoadingTemplate" >
+                Entrar
+              </ng-container>
+              <ng-template #LoadingTemplate>
+                <mat-spinner [diameter]="20" color="primary"></mat-spinner>
+              </ng-template>
+            </span>
+          </button>
+        </div>
+
+        <div class="login__forgot-password">
+          <a mat-button routerLink="recuperacao">Esqueceu sua senha?</a>
+        </div>
+      </mat-card-footer>
+    </form>
+  </mat-card>
+</div>
