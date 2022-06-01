@@ -20,4 +20,8 @@ export class AuthService {
   logout(): Observable<void> {
     return from(this.authentication.signOut());
   }
+
+  passwordRecovery(email: string): Observable<void> {
+    return from(this.authentication.sendPasswordResetEmail(email));
+  }
 }
