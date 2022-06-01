@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
-import { ForgotPasswordComponent } from "./pages/forgot-password/forgot-password.component";
-import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
-  {
-    path: 'recuperacao',
-    component: ForgotPasswordComponent
-  }
+  // {
+  //   path: 'recuperacao',
+  //   loadChildren: () => import('./pages/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+  // }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class AuthenticationRoutingModule { }
+export class AuthenticationRouting {
+}
