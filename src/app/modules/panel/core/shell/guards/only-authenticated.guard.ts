@@ -19,10 +19,9 @@ export class OnlyAuthenticatedGuard implements CanActivate {
         switchMap((hasUser) => {
           if (!hasUser) {
             this.router.navigateByUrl('/painel/login')
-            return of(false);
           }
 
-          return of(true);
+          return of(hasUser);
         })
       );
   }
