@@ -1,0 +1,7 @@
+<ng-container *ngIf="isMobile;else DesktopTemplate">
+</ng-container>
+
+<ng-template #DesktopTemplate>
+  <app-desktop-layout [routes]="routes"></app-desktop-layout>
+</ng-template>
+

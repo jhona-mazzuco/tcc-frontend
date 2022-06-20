@@ -1,0 +1,15 @@
+<div class="shell">
+  <mat-toolbar color="primary">
+    <div class="shell__topbar">
+      <div class="shell__menu">
+        <ng-container *ngFor="let option of routes">
+          <app-menu-option [option]="option"></app-menu-option>
+        </ng-container>
+      </div>
+
+      <app-settings></app-settings>
+    </div>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+</div>

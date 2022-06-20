@@ -1,0 +1,11 @@
+<button mat-button [matMenuTriggerFor]="menu">
+  {{ currentUser?.email }}
+  <mat-icon>keyboard_arrow_down</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Sair
+  </button>
+</mat-menu>

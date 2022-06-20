@@ -1,0 +1,23 @@
+.link {
+  display: flex;
+  align-items: center;
+  margin: 0 1.25em;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 250ms, background 250ms;
+  box-sizing: content-box;
+
+  &:hover {
+    background: #ffffff;
+    color: #3f51b5;
+  }
+
+  &--active {
+    border: 1px solid rgb(255, 255, 255, 0.85);
+  }
+
+  &__name {
+    margin-left: 8px;
+  }
+}

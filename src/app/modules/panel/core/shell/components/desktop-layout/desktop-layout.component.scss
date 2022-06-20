@@ -1,0 +1,13 @@
+.shell {
+  &__topbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  &__menu {
+    display: inline-flex;
+    width: 100%;
+  }
+}
