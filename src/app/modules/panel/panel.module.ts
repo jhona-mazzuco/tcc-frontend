@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PanelRoutingModule } from "./panel.routing";
+import { PanelRouting } from "./panel.routing";
 
 
 
@@ -8,7 +8,7 @@ import { PanelRoutingModule } from "./panel.routing";
   declarations: [],
   imports: [
     CommonModule,
-    PanelRoutingModule
+    PanelRouting
   ]
 })
 export class PanelModule { }

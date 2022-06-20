@@ -4,11 +4,6 @@ export const MENU_OPTIONS: MenuOption[] = [
   {
     name: 'Dashboard',
     icon: 'home',
-    url: '/'
+    url: 'dashboard'
   },
-  {
-    name: 'Dashboard',
-    icon: 'home',
-    url: '/'
-  }
 ];

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
+import { canActivate, redirectUnauthorizedTo } from "@angular/fire/compat/auth-guard";
 import { RouterModule, Routes } from "@angular/router";
 import { ShellComponent } from "./components/shell/shell.component";
-import { OnlyAuthenticatedGuard } from "./guards/only-authenticated.guard";
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['painel/login']);
 
 const routes: Routes = [
   {
@@ -10,18 +12,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard'
+      },
+      {
+        path: 'dashboard',
         loadChildren: () => import('../../pages/dashboard/dashboard.module').then(m => m.DashboardModule),
-        canActivate: [OnlyAuthenticatedGuard]
-      }
+        ...canActivate(redirectUnauthorizedToLogin)
+      },
     ]
   }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShellRoutingModule {
+export class ShellRouting {
 }
