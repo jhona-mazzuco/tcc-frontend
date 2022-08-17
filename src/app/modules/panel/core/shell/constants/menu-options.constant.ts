@@ -10,5 +10,10 @@ export const MENU_OPTIONS: MenuOption[] = [
     name: 'Usuários',
     icon: 'group',
     url: 'usuarios'
+  },
+  {
+    name: 'Campos',
+    icon: 'stadium',
+    url: 'campos'
   }
 ];

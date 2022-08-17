@@ -24,6 +24,11 @@ const routes: Routes = [
         path: 'usuarios',
         loadChildren: () => import('../../pages/user/user.module').then(m => m.UserModule),
         ...canActivate(redirectUnauthorizedToLogin)
+      },
+      {
+        path: 'campos',
+        loadChildren: () => import('../../pages/field/field.module').then(m => m.FieldModule),
+        ...canActivate(redirectUnauthorizedToLogin)
       }
     ]
   }
