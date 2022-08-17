@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  adminApi: 'http://localhost:3000',
   firebase: {
     projectId: 'tcc-front-bacdb',
     appId: '1:839388945354:web:feedabb5d76818cf914d33',

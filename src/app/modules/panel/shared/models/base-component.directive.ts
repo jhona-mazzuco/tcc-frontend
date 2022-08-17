@@ -7,7 +7,7 @@ import { NotificationService } from "../services/notification.service";
 export class BaseComponent {
   protected destroy$ = new ReplaySubject(1);
 
-  constructor(protected notification: NotificationService) {
+  constructor(public notification: NotificationService) {
   }
 
   ngOnDestroy(): void {

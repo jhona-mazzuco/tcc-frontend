@@ -1,0 +1,29 @@
+<div class="users">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Usuários</mat-card-title>
+      <mat-card-subtitle>Gerencie os usuários da aplicação</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngIf="!loading;else LoadingTemplate">
+        <ng-container *ngIf="!hasError; else ErrorTemplate">
+          <app-user-table [users]="users" (reloadItems)="fetchUsers()"></app-user-table>
+        </ng-container>
+
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #LoadingTemplate>
+  <div class="users__loading">
+    <mat-spinner [diameter]="40"></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #ErrorTemplate>
+  <div class="users__error">
+    <mat-icon>error</mat-icon>
+    Ocorreu um erro inesperado, tente novamente mais tarde!
+  </div>
+</ng-template>

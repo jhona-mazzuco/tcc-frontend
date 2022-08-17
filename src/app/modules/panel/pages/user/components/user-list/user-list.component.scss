@@ -1,0 +1,23 @@
+@import "src/assets/scss/colors";
+
+.users {
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+  }
+
+  &__error {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $error-color;
+    padding: 2.5em;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}

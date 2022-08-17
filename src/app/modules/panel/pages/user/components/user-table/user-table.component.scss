@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+.phone {
+  text-align: center;
+}
+
+.role {
+  text-align: center;
+
+  mat-chip-list {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+
+.role {
+  font-size: 12px;
+}

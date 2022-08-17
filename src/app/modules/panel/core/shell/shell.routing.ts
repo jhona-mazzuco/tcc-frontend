@@ -20,6 +20,11 @@ const routes: Routes = [
         loadChildren: () => import('../../pages/dashboard/dashboard.module').then(m => m.DashboardModule),
         ...canActivate(redirectUnauthorizedToLogin)
       },
+      {
+        path: 'usuarios',
+        loadChildren: () => import('../../pages/user/user.module').then(m => m.UserModule),
+        ...canActivate(redirectUnauthorizedToLogin)
+      }
     ]
   }
 ];

@@ -5,7 +5,6 @@ import { PanelRouting } from "./panel.routing";
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     PanelRouting
