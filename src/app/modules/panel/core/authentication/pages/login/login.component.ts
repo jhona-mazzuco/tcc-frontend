@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { catchError, finalize, takeUntil, tap } from "rxjs";
 import { BaseComponent } from "../../../../shared/models/base-component.directive";
@@ -13,11 +13,11 @@ import { FEEDBACK_MESSAGES } from "./constants/feedback-messages.constant";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends BaseComponent implements OnInit {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   loading!: boolean;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private service: AuthService,
     private router: Router,
     notification: NotificationService

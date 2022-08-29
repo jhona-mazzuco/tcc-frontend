@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -18,7 +18,7 @@ import { ForgotPasswordComponent } from './forgot-password.component';
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
-  let fb: FormBuilder;
+  let fb: UntypedFormBuilder;
   let service: AuthService;
   let router: Router;
   let notification: NotificationService;
@@ -42,7 +42,7 @@ describe('ForgotPasswordComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ForgotPasswordComponent);
     component = fixture.componentInstance;
-    fb = TestBed.inject(FormBuilder);
+    fb = TestBed.inject(UntypedFormBuilder);
     service = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
     notification = TestBed.inject(NotificationService);
@@ -66,7 +66,7 @@ describe('ForgotPasswordComponent', () => {
       .and
       .stub()
       .and
-      .returnValue(new FormGroup({}));
+      .returnValue(new UntypedFormGroup({}));
 
     component.initForm();
 
@@ -82,8 +82,8 @@ describe('ForgotPasswordComponent', () => {
     let sendSpy: jasmine.Spy;
 
     beforeEach(() => {
-      component.form = new FormGroup({
-        test: new FormControl(null, Validators.required)
+      component.form = new UntypedFormGroup({
+        test: new UntypedFormControl(null, Validators.required)
       });
 
       markAllAsTouchedSpy = spyOn(component.form, 'markAllAsTouched').and.stub();
@@ -116,8 +116,8 @@ describe('ForgotPasswordComponent', () => {
 
     beforeEach(() => {
       component.loading = true;
-      component.form = new FormGroup({
-        email: new FormControl(email)
+      component.form = new UntypedFormGroup({
+        email: new UntypedFormControl(email)
       });
 
       passwordRecoverySpy = spyOn(service, 'passwordRecovery');

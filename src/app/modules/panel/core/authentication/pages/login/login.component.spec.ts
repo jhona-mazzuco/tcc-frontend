@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -16,7 +16,7 @@ import { LoginComponent } from './login.component';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let fb: FormBuilder;
+  let fb: UntypedFormBuilder;
   let service: AuthService;
   let router: Router;
   let snackbar: MatSnackBar;
@@ -40,7 +40,7 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    fb = TestBed.inject(FormBuilder);
+    fb = TestBed.inject(UntypedFormBuilder);
     service = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
     snackbar = TestBed.inject(MatSnackBar);
@@ -62,7 +62,7 @@ describe('LoginComponent', () => {
   it('should be initForm', () => {
     const groupSpy = spyOn(fb, 'group')
       .and.stub()
-      .and.returnValue(new FormGroup({}));
+      .and.returnValue(new UntypedFormGroup({}));
 
     component.initForm();
 
@@ -79,8 +79,8 @@ describe('LoginComponent', () => {
     let signInSpy: jasmine.Spy;
 
     beforeEach(() => {
-      component.form = new FormGroup({
-        test: new FormControl(null, Validators.required)
+      component.form = new UntypedFormGroup({
+        test: new UntypedFormControl(null, Validators.required)
       });
 
       markAllAsTouchedSpy = spyOn(component.form, 'markAllAsTouched').and.stub();
@@ -115,9 +115,9 @@ describe('LoginComponent', () => {
 
     beforeEach(() => {
       component.loading = true;
-      component.form = new FormGroup({
-        email: new FormControl(email),
-        password: new FormControl(password)
+      component.form = new UntypedFormGroup({
+        email: new UntypedFormControl(email),
+        password: new UntypedFormControl(password)
       });
 
       signInSpy = spyOn(service, 'signIn');

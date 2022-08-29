@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-field-form',
@@ -11,9 +11,9 @@ export class FieldFormComponent implements OnInit {
 
   @Input() submitting!: boolean;
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: UntypedFormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -21,8 +21,8 @@ export class FieldFormComponent implements OnInit {
 
   initForm(): void {
     this.form = this.fb.group({
-      name: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required)
+      name: new UntypedFormControl(null, Validators.required),
+      description: new UntypedFormControl(null, Validators.required)
     });
   }
 
