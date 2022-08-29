@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { FieldCreateComponent } from "./components/field-create/field-create.component";
+import { FieldDetailComponent } from "./components/field-detail/field-detail.component";
 import { FieldEditComponent } from "./components/field-edit/field-edit.component";
 import { FieldListComponent } from "./components/field-list/field-list.component";
 
@@ -18,6 +19,10 @@ import { FieldListComponent } from "./components/field-list/field-list.component
       {
         path: ':id/editar',
         component: FieldEditComponent
+      },
+      {
+        path: ':id/detalhes',
+        component: FieldDetailComponent
       },
     ])
   ],

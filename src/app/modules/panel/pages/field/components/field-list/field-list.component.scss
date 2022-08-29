@@ -1,0 +1,48 @@
+.list {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__table {
+    width: 100%;
+  }
+
+  &__name {
+    width: 80%;
+  }
+
+  &__action {
+    width: 20%;
+
+    &-row {
+      display: flex;
+      justify-content: end;
+      gap: 10px;
+    }
+  }
+
+  &__loading {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    b {
+      margin-left: 8px;
+    }
+  }
+
+  &__edit {
+    color: cornflowerblue;
+  }
+
+  &__delete {
+    color: orangered;
+  }
+
+  &__edit, &__delete {
+    cursor: pointer;
+  }
+}

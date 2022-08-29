@@ -1,0 +1,23 @@
+<table class="files" mat-table [dataSource]="files">
+  <ng-container matColumnDef="preview">
+    <th mat-header-cell *matHeaderCellDef> No.</th>
+    <td mat-cell *matCellDef="let element"> {{element | json}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name</th>
+    <td mat-cell *matCellDef="let element"> {{element | json}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>
+      <button type="button" mat-icon-button matTooltip="Adicionar" (click)="openUploadModal()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element | json}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
