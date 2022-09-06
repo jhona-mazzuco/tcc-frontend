@@ -8,9 +8,9 @@ describe('FieldFileTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FieldFileTableComponent ]
+      declarations: [FieldFileTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

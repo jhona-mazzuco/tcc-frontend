@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { AngularFireStorage } from "@angular/fire/compat/storage";
-import { MatDialogRef } from "@angular/material/dialog";
 import { ReplaySubject, takeUntil, tap } from "rxjs";
-import { AuthService } from "../../../../core/authentication/services/auth.service";
+import { IMAGES_STORAGE_KEY } from "../../constants/images-storage-key.constant";
 
 @Component({
   selector: 'app-field-image-upload',
@@ -10,14 +9,15 @@ import { AuthService } from "../../../../core/authentication/services/auth.servi
   styleUrls: ['./field-image-upload.component.scss']
 })
 export class FieldImageUploadComponent implements OnDestroy {
-  @Output() onUploaded = new EventEmitter();
+  @Output() onUploaded = new EventEmitter<void>();
+  @Input() id!: string;
 
   destroy$ = new ReplaySubject(1);
 
   percentageUpload!: number;
   selectFile!: File;
 
-  constructor(private storage: AngularFireStorage, private ref: MatDialogRef<FieldImageUploadComponent>, private auth: AuthService) {
+  constructor(private storage: AngularFireStorage) {
   }
 
   ngOnDestroy(): void {
@@ -26,25 +26,19 @@ export class FieldImageUploadComponent implements OnDestroy {
   }
 
   onFileChange(ipt: HTMLInputElement) {
-    debugger;
     this.selectFile = ipt.files![0];
     ipt.value = '';
   }
 
   upload(): void {
-    this.auth.currentUser
+    const task = this.storage.upload(`${ IMAGES_STORAGE_KEY }/${ this.id }/${ this.selectFile.name }`, this.selectFile);
+
+    task.then(() => this.onUploaded.next());
+
+    task.percentageChanges()
       .pipe(
-      tap(currentUser => {
-        const task = this.storage.upload(`field_image/${currentUser?.uid}/${ this.selectFile.name }`, this.selectFile);
-
-        task.then(() => this.onUploaded.next(this.selectFile));
-
-        task.percentageChanges()
-          .pipe(
-            takeUntil(this.destroy$),
-            tap(percent => this.percentageUpload = percent ?? 0)
-          ).subscribe();
-      })
-    ).subscribe();
+        takeUntil(this.destroy$),
+        tap(percent => this.percentageUpload = percent ?? 0)
+      ).subscribe();
   }
 }

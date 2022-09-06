@@ -8,16 +8,14 @@ import { Router } from "@angular/router";
 })
 export class EditBtnComponent {
   @Input() id!: string;
+  @Input() disabled!: boolean;
 
   constructor(private router: Router) {
   }
 
-
   onClick($event: MouseEvent) {
     $event.stopPropagation();
     $event.preventDefault();
-
-    debugger;
     this.router.navigate([this.id, 'editar']);
   }
 }

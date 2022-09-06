@@ -8,9 +8,9 @@ describe('FieldImageUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FieldImageUploadComponent ]
+      declarations: [FieldImageUploadComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

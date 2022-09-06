@@ -4,11 +4,11 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { ShellComponent } from './components/shell/shell.component';
-import { ShellRouting } from "./shell.routing";
-import { DesktopLayoutComponent } from './components/desktop-layout/desktop-layout.component';
 import { MenuOptionComponent } from './components/desktop-layout/components/menu-option/menu-option.component';
 import { SettingsComponent } from './components/desktop-layout/components/settings/settings.component';
+import { DesktopLayoutComponent } from './components/desktop-layout/desktop-layout.component';
+import { ShellComponent } from './components/shell/shell.component';
+import { ShellRouting } from "./shell.routing";
 
 
 @NgModule({

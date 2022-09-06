@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from "@angular/router";
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+import { RouterModule, Routes } from "@angular/router";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['painel/login']);
 

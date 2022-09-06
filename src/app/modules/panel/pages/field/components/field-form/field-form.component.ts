@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { FieldForm } from "../../interfaces/field-form.interface";
+import { Field } from "../../interfaces/field.interface";
 
 @Component({
   selector: 'app-field-form',
@@ -10,20 +12,27 @@ export class FieldFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter();
 
   @Input() submitting!: boolean;
+  @Input() patchValue!: Partial<Field>;
 
-  form!: UntypedFormGroup;
+  form!: FormGroup<FieldForm>;
 
-  constructor(private fb: UntypedFormBuilder) { }
+  constructor(private fb: NonNullableFormBuilder) {
+  }
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm(): void {
-    this.form = this.fb.group({
-      name: new UntypedFormControl(null, Validators.required),
-      description: new UntypedFormControl(null, Validators.required)
+    this.form = this.fb.group<FieldForm>({
+      name: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required)
     });
+
+    if (this.patchValue) {
+      this.form.patchValue(this.patchValue);
+      this.form.updateValueAndValidity();
+    }
   }
 
   submit(): void {

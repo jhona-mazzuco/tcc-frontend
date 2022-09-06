@@ -13,12 +13,17 @@
     width: 80%;
   }
 
+  &__go {
+    text-decoration: none;
+    color: #000;
+  }
+
   &__action {
     width: 20%;
 
     &-row {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       gap: 10px;
     }
   }
@@ -39,7 +44,7 @@
   }
 
   &__delete {
-    color: orangered;
+    color: red;
   }
 
   &__edit, &__delete {

@@ -1,59 +1,90 @@
-import { Component, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
-import { ReplaySubject, takeUntil, tap } from "rxjs";
-import { FieldImageUploadComponent } from "../field-image-upload/field-image-upload.component";
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AngularFireStorage } from "@angular/fire/compat/storage";
+import { Reference } from "@angular/fire/compat/storage/interfaces";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
+import firebase from "firebase/compat/app";
+import { finalize, ReplaySubject, Subject, switchMap, takeUntil, tap } from "rxjs";
+import { PreviewModalService } from "../../../../shared/components/preview-modal/services/preview-modal.service";
+import { IMAGES_STORAGE_KEY } from "../../constants/images-storage-key.constant";
 import { FILE_TABLE_COLUMNS } from "./constant/file-table-columns.constant";
 
 @Component({
   selector: 'app-field-file-table',
   templateUrl: './field-file-table.component.html',
   styleUrls: ['./field-file-table.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FieldFileTableComponent),
-      multi: true
-    }
-  ]
 })
-export class FieldFileTableComponent implements ControlValueAccessor {
+export class FieldFileTableComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() id!: string;
+  @Input() refresh$!: Subject<void>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   destroy$ = new ReplaySubject(1);
-
-  files: File[] = [];
+  dataSource = new MatTableDataSource<Reference>();
   displayedColumns = FILE_TABLE_COLUMNS;
-  disabled = false;
+  page = 0;
+  loading = false;
 
-  onChange = (files: string[]) => {};
-  onTouched = () => {};
-
-  constructor(private dialog: MatDialog) { }
-
-
-  registerOnChange(fn: (files: string[]) => void): void {
-    this.onChange = fn;
+  constructor(
+    private storage: AngularFireStorage,
+    private preview: PreviewModalService,
+  ) {
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
-  writeValue(obj: any): void {
-    console.log(obj);
+  ngOnInit(): void {
+    this.fetchFiles();
+    this.listenRefresh();
   }
 
-  openUploadModal(): void {
-    const ref = this.dialog.open(FieldImageUploadComponent);
-    ref.componentInstance.onUploaded.pipe(
-      takeUntil(this.destroy$),
-      tap(file => {
-        this.files.push(file);
-        ref.close();
-      }),
-    ).subscribe();
+  openPreviewModal(src: string): void {
+    this.preview.open(src);
+  }
+
+  fetchFiles(): void {
+    this.loading = true;
+    this.storage.ref(`${ IMAGES_STORAGE_KEY }/${ this.id }`)
+      .list()
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(this.onFetchSuccess.bind(this)),
+        finalize(() => {
+          this.loading = false
+        })
+      ).subscribe();
+  }
+
+  listenRefresh(): void {
+    this.refresh$
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap(() => this.storage.ref(`${ IMAGES_STORAGE_KEY }/${ this.id }`).list()),
+        tap(this.onFetchSuccess.bind(this))
+      )
+      .subscribe();
+  }
+
+  onFetchSuccess({ items }: firebase.storage.ListResult): void {
+    this.dataSource = new MatTableDataSource(items);
+    this.dataSource.paginator = this.paginator;
+  }
+
+  delete(ref: string): void {
+    this.storage.ref(ref)
+      .delete()
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(() => this.refresh$.next())
+      )
+      .subscribe();
   }
 }

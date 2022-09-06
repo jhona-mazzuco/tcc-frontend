@@ -1,1 +1,9 @@
-<p>field-edit works!</p>
+<ng-container *ngIf="!loading.FETCH; else LoadingTemplate">
+  <app-field-form [submitting]="loading.SUBMIT" [patchValue]="field" (onSubmit)="save($event)"></app-field-form>
+</ng-container>
+
+<ng-template #LoadingTemplate>
+  <div class="loading">
+    <mat-progress-spinner></mat-progress-spinner>
+  </div>
+</ng-template>
