@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { catchError, takeUntil, tap } from "rxjs";
 import { NotificationService } from "@shared/notification/notification.service";
+import { catchError, takeUntil, tap } from "rxjs";
 import { ChangeRoleImplementation } from "../../interfaces/change-role-implementation.interface";
 import { ChangeRoleComponent } from "../../models/change-role.directive";
 import { UserService } from "../../services/user.service";

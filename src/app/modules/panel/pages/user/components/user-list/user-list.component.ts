@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { catchError, finalize, Observable, of, ReplaySubject, takeUntil, tap } from "rxjs";
+import { BaseComponent } from "@shared/models/base-component.directive";
+import { NotificationService } from "@shared/notification/notification.service";
+import { catchError, finalize, Observable, takeUntil, tap } from "rxjs";
 import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 
@@ -8,19 +10,13 @@ import { UserService } from "../../services/user.service";
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit, OnDestroy {
-  destroy$ = new ReplaySubject(1);
-
+export class UserListComponent extends BaseComponent implements OnInit, OnDestroy {
   users!: User[];
   loading!: boolean;
   hasError = false;
 
-  constructor(private service: UserService) {
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+  constructor(private service: UserService, notification: NotificationService) {
+    super(notification)
   }
 
   ngOnInit(): void {
@@ -33,7 +29,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         tap(this.onSuccess.bind(this)),
-        catchError(this.catchError.bind(this)),
+        catchError(this.onFetchError.bind(this)),
         finalize(() => this.loading = false),
       ).subscribe();
   }
@@ -43,8 +39,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.users = users;
   }
 
-  catchError(): Observable<null> {
+  onFetchError(): Observable<null> {
     this.hasError = true;
-    return of(null);
+    return this.catchError();
   }
 }
