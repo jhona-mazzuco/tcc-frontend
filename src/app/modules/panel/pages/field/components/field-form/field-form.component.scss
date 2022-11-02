@@ -7,10 +7,16 @@
     width: 1000px;
   }
 
-  &__form {
+  &__row {
     display: flex;
     justify-content: space-around;
     gap: 2rem;
+
+    &--start-at {
+      align-items: center;
+      justify-content: left;
+      gap: 8px;
+    }
   }
 
   &__group {
@@ -20,6 +26,14 @@
 
     textarea {
       resize: none;
+    }
+
+    &--ignored-our {
+      text-align: center;
+
+      mat-label {
+        margin-bottom: 1rem;
+      }
     }
   }
 

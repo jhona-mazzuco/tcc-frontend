@@ -1,6 +1,6 @@
 import { Directive, EventEmitter, Input, Output, Self } from '@angular/core';
-import { BaseComponent } from "../../../shared/models/base-component.directive";
-import { NotificationService } from "../../../shared/services/notification.service";
+import { BaseComponent } from "@shared/models/base-component.directive";
+import { NotificationService } from "@shared/notification/notification.service";
 import { DefaultResponse } from "../interfaces/default-response.interface";
 
 @Directive()

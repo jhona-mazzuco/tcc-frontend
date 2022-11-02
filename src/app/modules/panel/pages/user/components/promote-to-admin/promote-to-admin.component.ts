@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { catchError, takeUntil, tap } from "rxjs";
-import { NotificationService } from "../../../../shared/services/notification.service";
+import { NotificationService } from "@shared/notification/notification.service";
 import { ChangeRoleImplementation } from "../../interfaces/change-role-implementation.interface";
 import { ChangeRoleComponent } from "../../models/change-role.directive";
 import { UserService } from "../../services/user.service";
@@ -20,7 +20,7 @@ export class PromoteToAdminComponent extends ChangeRoleComponent implements Chan
       .pipe(
         takeUntil(this.destroy$),
         tap(this.onChangeRoleSuccess.bind(this)),
-        catchError(this.catchError.bind(this))
+        catchError(({ error }) => this.catchError(error.message))
       ).subscribe();
   }
 }

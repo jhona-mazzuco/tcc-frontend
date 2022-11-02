@@ -1,6 +1,7 @@
+import { FieldConfig } from "./field-config.interface";
+
 export interface Field {
-  id: string;
   name: string;
   description: string;
-  files?: string[];
+  config: FieldConfig;
 }

@@ -25,7 +25,7 @@
             <td mat-cell *matCellDef="let element">
               <div class="list__action-row">
                 <app-edit-btn [id]="element.id"></app-edit-btn>
-                <app-remove-btn (click)="remove(element.id)"></app-remove-btn>
+                <app-remove-btn (remove)="remove(element.id)"></app-remove-btn>
               </div>
             </td>
           </ng-container>

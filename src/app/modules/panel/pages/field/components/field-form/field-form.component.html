@@ -1,12 +1,12 @@
 <div class="field">
   <mat-card class="field__card">
     <mat-card-header>
-      <mat-card-title>Cadastrar campo</mat-card-title>
+      <mat-card-title>{{ patchValue ? 'Editar' : 'Cadastrar' }} campo</mat-card-title>
     </mat-card-header>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
       <mat-card-content>
-        <div class="field__form">
+        <div class="field__row">
           <div class="field__group">
             <mat-form-field appearance="outline">
               <mat-label>Nome</mat-label>
@@ -24,6 +24,24 @@
               </mat-error>
             </mat-form-field>
           </div>
+
+          <div class="field__group" formGroupName="config">
+            <mat-form-field appearance="outline">
+              <mat-label>Duração (minutos)</mat-label>
+              <input matInput type="number" formControlName="duration" [min]="10">
+              <span matSuffix>min</span>
+            </mat-form-field>
+
+            <div class="field__row field__row--start-at">
+              <mat-label>Horário de Início:</mat-label>
+              <app-timepicker formControlName="startAt"></app-timepicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="field__group field__group--ignored-our" formGroupName="config">
+          <mat-label>Horários Ignorados:</mat-label>
+          <app-ignored-hours-input [suggestions]="ignoredHourSuggestion" formControlName="ignoredHours"></app-ignored-hours-input>
         </div>
       </mat-card-content>
 

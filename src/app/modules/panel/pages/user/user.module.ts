@@ -5,10 +5,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { NotificationService } from "../../shared/services/notification.service";
+import { NotificationModule } from "@shared/notification/notification.module";
 import { DemoteToUserComponent } from './components/demote-to-user/demote-to-user.component';
 import { PromoteToAdminComponent } from './components/promote-to-admin/promote-to-admin.component';
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -34,9 +33,9 @@ import { UserRouting } from "./user.routing";
     MatTooltipModule,
     MatButtonModule,
     MatChipsModule,
-    MatSnackBarModule
+    NotificationModule
   ],
-  providers: [UserService, NotificationService]
+  providers: [UserService]
 })
 export class UserModule {
 }

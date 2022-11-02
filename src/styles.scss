@@ -1,8 +1,30 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+@import "assets/scss/theming";
 @import "assets/scss/snackbar-types";
 
-html, body {
-  height: 100%;
-}
+$tcc-frontend-primary: mat.define-palette($primary-palette);
+$tcc-frontend-accent: mat.define-palette($secondary-palette);
+$tcc-frontend-warn: mat.define-palette($warn-palette);
+
+$tcc-frontend-theme: mat.define-light-theme((
+  color: (
+    primary: $tcc-frontend-primary,
+    accent: $tcc-frontend-accent,
+    warn: $tcc-frontend-warn,
+  )
+));
+
+@include mat.all-component-themes($tcc-frontend-theme);
 
 body {
   margin: 0;
@@ -16,6 +38,13 @@ body {
   overflow: hidden;
 }
 
-.preview-dialog-backdrop {
-  background: rgba(0, 0, 0, 0.75);
+.snackbar {
+  &-error {
+    background: rgba(248, 75, 75, 0.8);
+  }
+
+  &-warn {
+    background: rgba(241, 241, 102, 0.8);
+    color: rgba(0, 0, 0, 0.9);
+  }
 }

@@ -1,30 +1,35 @@
-import { Component } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
-import { GENERIC_ERROR_MESSAGE } from "../../../../shared/constants/generic-error-message.constant";
+import { BaseComponent } from "@shared/models/base-component.directive";
+import { NotificationService } from "@shared/notification/notification.service";
+import { catchError, finalize, takeUntil, tap } from "rxjs";
 import { Field } from "../../interfaces/field.interface";
+import { FieldService } from "../../services/field.service";
 
 @Component({
   selector: 'app-field-create',
   templateUrl: './field-create.component.html',
   styleUrls: ['./field-create.component.scss']
 })
-export class FieldCreateComponent {
+export class FieldCreateComponent extends BaseComponent implements OnDestroy {
   loading!: boolean;
-  fields!: AngularFirestoreCollection<Field>;
 
-  constructor(private firestore: AngularFirestore, private router: Router, private snackbar: MatSnackBar) {
-    this.fields = this.firestore.collection<Field>('fields');
+  constructor(
+    private service: FieldService,
+    private router: Router,
+    notification: NotificationService
+  ) {
+    super(notification);
   }
 
   save(field: Field) {
     this.loading = true;
-    this.fields.add(field)
-      .then(({ id }) => this.router.navigateByUrl(`/painel/campos/${ id }/detalhes`))
-      .catch(() => {
-        this.snackbar.open(GENERIC_ERROR_MESSAGE);
-      })
-      .finally(() => this.loading = false);
+    this.service.create(field)
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(({ id }) => this.router.navigateByUrl(`/painel/campos`)),
+        catchError(() => this.catchError()),
+        finalize(() => this.loading = false)
+      ).subscribe();
   }
 }

@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  adminApi: "http://localhost:4300",
+  api: "http://localhost:5001/tcc-front-bacdb/us-central1",
   firebase: {
     apiKey: "AIzaSyA1tDlKDKWKsNWBqJaUjbPo-qu3YhbS_BY",
     authDomain: "tcc-front-bacdb.firebaseapp.com",
@@ -11,4 +11,3 @@ export const environment = {
     appId: "1:839388945354:web:deca1b82cb7c27ce914d33",
   }
 };
-  

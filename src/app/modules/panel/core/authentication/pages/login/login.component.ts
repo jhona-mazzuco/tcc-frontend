@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { catchError, finalize, takeUntil, tap } from "rxjs";
-import { BaseComponent } from "../../../../shared/models/base-component.directive";
-import { NotificationService } from "../../../../shared/services/notification.service";
+import { BaseComponent } from "@shared/models/base-component.directive";
+import { NotificationService } from "@shared/notification/notification.service";
+import { UserAuthenticated } from "../../../../shared/interfaces/user-authenticated.interface";
 import { AuthService } from "../../services/auth.service";
 import { FEEDBACK_MESSAGES } from "./constants/feedback-messages.constant";
 
@@ -55,7 +56,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
       ).subscribe();
   }
 
-  onSignInSuccess(): void {
+  onSignInSuccess(data: UserAuthenticated): void {
+    this.service.saveUser(data);
     this.router.navigateByUrl('/painel');
   }
 }

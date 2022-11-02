@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { RouterModule, Routes } from "@angular/router";
+import { AuthenticatedGuard } from "./core/authentication/guards/authenticated.guard";
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['painel/login']);
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./core/shell/shell.module').then(m => m.ShellModule),
-    ...canActivate(redirectUnauthorizedToLogin)
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: 'login',

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import firebase from "firebase/compat/app";
-import { filter, ReplaySubject, takeUntil, tap } from "rxjs";
+import { ReplaySubject } from "rxjs";
+import { UserAuthenticated } from "../../../../../../shared/interfaces/user-authenticated.interface";
 import { AuthService } from "../../../../../authentication/services/auth.service";
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthService } from "../../../../../authentication/services/auth.service
 })
 export class SettingsComponent implements OnInit, OnDestroy {
   destroy$ = new ReplaySubject(1);
-  currentUser!: firebase.User;
+  currentUser!: UserAuthenticated;
 
   constructor(private service: AuthService, private router: Router) {
   }
@@ -26,21 +26,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   fetchCurrentUser(): void {
-    this.service.currentUser
-      .pipe(
-        takeUntil(this.destroy$),
-        filter(user => !!user),
-        tap(user => this.currentUser = user as firebase.User)
-      )
-      .subscribe();
+    this.currentUser = this.service.currentUser!;
   }
 
   logout(): void {
-    this.service.logout()
-      .pipe(
-        takeUntil(this.destroy$),
-        tap(() => this.router.navigateByUrl('/painel/login'))
-      )
-      .subscribe();
+    this.service.removeUser();
+    this.router.navigateByUrl('/painel/login');
   }
 }

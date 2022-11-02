@@ -1,0 +1,25 @@
+<div class="timepicker">
+  <div class="timepicker__field">
+    <button mat-icon-button type="button" [disableRipple]="true" (click)="increment('hour', iptHour)" [disabled]="disabled">
+      <mat-icon>expand_less</mat-icon>
+    </button>
+    <mat-form-field appearance="outline">
+      <input #iptHour matInput [readonly]="true" [value]="hour | number: '2.0-0'" [max]="23" [min]="0"/>
+    </mat-form-field>
+    <button mat-icon-button type="button" [disableRipple]="true" (click)="decrement('hour',iptHour)" [disabled]="disabled">
+      <mat-icon>expand_more</mat-icon>
+    </button>
+  </div>
+  <b>:</b>
+  <div class="timepicker__field">
+    <button mat-icon-button type="button" [disableRipple]="true" (click)="increment('minute', iptMinute)" [disabled]="disabled">
+      <mat-icon>expand_less</mat-icon>
+    </button>
+    <mat-form-field appearance="outline">
+      <input #iptMinute matInput [readonly]="true" [value]="minute | number: '2.0-0'" [max]="59" [min]="0"/>
+    </mat-form-field>
+    <button mat-icon-button type="button" [disableRipple]="true" (click)="decrement('minute', iptMinute)" [disabled]="disabled">
+      <mat-icon>expand_more</mat-icon>
+    </button>
+  </div>
+</div>

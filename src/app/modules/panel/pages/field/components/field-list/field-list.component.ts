@@ -1,27 +1,26 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { AngularFireStorage } from "@angular/fire/compat/storage";
-import { map, Observable, ReplaySubject, takeUntil, tap } from "rxjs";
+import { BaseComponent } from "@shared/models/base-component.directive";
+import { NotificationService } from "@shared/notification/notification.service";
+import { catchError, Observable, takeUntil, tap } from "rxjs";
 import { FIELD_HEADER_COLUMNS } from "../../constants/field-header-columns.constant";
-import { IMAGES_STORAGE_KEY } from "../../constants/images-storage-key.constant";
 import { Field } from "../../interfaces/field.interface";
+import { FieldService } from "../../services/field.service";
 
 @Component({
   selector: 'app-field-list',
   templateUrl: './field-list.component.html',
   styleUrls: ['./field-list.component.scss']
 })
-export class FieldListComponent implements OnInit, OnDestroy {
+export class FieldListComponent extends BaseComponent implements OnInit, OnDestroy {
   displayedColumns = FIELD_HEADER_COLUMNS;
-  dataSource$!: Observable<Field[]>;
-  destroy$ = new ReplaySubject(1);
+  dataSource$!: Observable<Field[] | null>;
+  loading!: boolean;
 
-  constructor(private firestore: AngularFirestore, private storage: AngularFireStorage) {
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+  constructor(
+    private service: FieldService,
+    notification: NotificationService
+  ) {
+    super(notification);
   }
 
   ngOnInit(): void {
@@ -29,22 +28,22 @@ export class FieldListComponent implements OnInit, OnDestroy {
   }
 
   fetchFields(): void {
-    this.dataSource$ = this.firestore
-      .collection('fields')
-      .valueChanges({ idField: 'id' }) as Observable<Field[]>;
+    this.dataSource$ = this.service.fetchFields()
+      .pipe(catchError(this.catchError.bind(this)));
   }
 
   remove(id: string): void {
-    this.firestore.doc(`fields/${ id }`)
-      .delete()
-      .then(() => this.storage.ref(`${ IMAGES_STORAGE_KEY }/${ id }`)
-        .list()
-        .pipe(
-          takeUntil(this.destroy$),
-          map(references => references.items),
-          tap((items) => items.forEach(async (i) => await i.delete()))
-        )
-        .subscribe()
+    this.service.remove(id)
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(this.onRemoveSuccess.bind(this)),
+        catchError(this.catchError.bind(this))
       )
+      .subscribe();
+  }
+
+  onRemoveSuccess(): void {
+    this.notification.success('Campo removido com sucesso!');
+    this.fetchFields();
   }
 }

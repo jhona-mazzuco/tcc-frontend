@@ -11,13 +11,14 @@ export class ShellComponent implements OnInit {
   isMobile!: boolean;
   routes = MENU_OPTIONS;
 
-  constructor(private platform: Platform) { }
+  constructor(private platform: Platform) {
+  }
 
   ngOnInit(): void {
     this.checkIfMobile();
   }
 
   checkIfMobile(): void {
-    this.isMobile = this.platform.ANDROID || this.platform.IOS
+    this.isMobile = this.platform.ANDROID || this.platform.IOS;
   }
 }
