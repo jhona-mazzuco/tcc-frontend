@@ -1,0 +1,15 @@
+.home {
+  background: #fff;
+  height: 100vh;
+  text-align: center;
+
+  &__logo {
+    height: 75%;
+  }
+
+  &__navigation {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+}

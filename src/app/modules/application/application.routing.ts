@@ -6,6 +6,10 @@ import { RouterModule } from "@angular/router";
   imports: [
     RouterModule.forChild([
       {
+        path: '',
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+      },
+      {
         path: 'horarios',
         loadChildren: () => import('./pages/scheduling/scheduling.module').then(m => m.SchedulingModule)
       },
