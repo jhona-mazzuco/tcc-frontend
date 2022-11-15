@@ -60,7 +60,12 @@ export class IgnoredHoursInputComponent implements ControlValueAccessor, OnInit 
     if (idx !== -1) {
       this.ngControl.value.splice(idx, 1);
     } else {
-      this.ngControl.value!.push(value);
+      if (this.ngControl.value?.length) {
+        this.ngControl.value.push(value);
+      } else {
+        this.onChange([value]);
+        return;
+      }
     }
 
     this.onChange(this.ngControl.value);

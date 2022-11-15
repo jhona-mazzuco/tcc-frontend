@@ -1,0 +1,4 @@
+<div class="item item--{{ data.status }}" (click)="onClick()">
+  <b class="item__hour">{{ data.hour | transformValueToLabel }} - {{ data.price | currency }}</b>
+  <b class="item__status">{{ data.status | translateStatus }}</b>
+</div>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { CurrentUserService } from "@shared/services/current-user.service";
 import { catchError, finalize, takeUntil, tap } from "rxjs";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
-import { UserAuthenticated } from "../../../../shared/interfaces/user-authenticated.interface";
+import { UserAuthenticated } from "@shared/interfaces/user-authenticated.interface";
 import { AuthService } from "../../services/auth.service";
 import { FEEDBACK_MESSAGES } from "./constants/feedback-messages.constant";
 
@@ -20,6 +21,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private service: AuthService,
+    private currentUserService: CurrentUserService,
     private router: Router,
     notification: NotificationService
   ) {
@@ -57,7 +59,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   onSignInSuccess(data: UserAuthenticated): void {
-    this.service.saveUser(data);
+    this.currentUserService.saveUser(data);
     this.router.navigateByUrl('/painel');
   }
 }

@@ -1,0 +1,30 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__btn {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.3);
+    transition: box-shadow 250ms, color 250ms;
+
+    &:hover {
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  &__day {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+    text-transform: capitalize;
+  }
+
+  &__middle {
+    padding: 0 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -4,7 +4,7 @@ import { environment } from "@environment";
 import { CreateOrUpdateResponse } from "@shared/interfaces/create-or-update-response.interface";
 import { Observable } from "rxjs";
 import { ResponseMessage } from "../../../shared/interfaces/response-message.interface";
-import { Field } from "../interfaces/field.interface";
+import { Field } from "@shared/interfaces/field.interface";
 
 @Injectable({
   providedIn: 'root'

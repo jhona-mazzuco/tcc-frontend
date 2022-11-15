@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from "@angular/material/button";
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from "./home.routing";
-
 
 
 @NgModule({
@@ -13,7 +12,8 @@ import { HomeRoutingModule } from "./home.routing";
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MatButtonModule
+    MatButtonModule,
   ]
 })
-export class HomeModule { }
+export class HomeModule {
+}

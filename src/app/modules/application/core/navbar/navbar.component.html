@@ -1,2 +1,38 @@
-<mat-toolbar color="primary" *ngIf="currentUser">
-</mat-toolbar>
+<div class="navbar">
+  <mat-toolbar color="primary">
+    <ng-container *ngIf="currentUser; else UnauthenticatedBar">
+      <div class="navbar__logged">
+        <div class="navbar__routes">
+          <a class="navbar__link" routerLink="/horarios">
+            <mat-icon>list_alt</mat-icon>
+            Horários
+          </a>
+
+          <a class="navbar__link" routerLink="/agendados">
+            <mat-icon>inbox</mat-icon>
+            Meus horários
+          </a>
+        </div>
+        <button mat-button [matMenuTriggerFor]="menu">
+          {{ currentUser.email }}
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Sair
+          </button>
+        </mat-menu>
+      </div>
+    </ng-container>
+  </mat-toolbar>
+</div>
+
+<ng-template #UnauthenticatedBar>
+  <div class="navbar__unauthenticated">
+    <a class="navbar__link" routerLink="/login">
+      <mat-icon>login</mat-icon>
+      Faça login
+    </a>
+  </div>
+</ng-template>

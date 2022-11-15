@@ -4,6 +4,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { RouterLinkActive, RouterLinkWithHref } from "@angular/router";
 import { NavbarComponent } from "./navbar.component";
 
 
@@ -16,7 +17,9 @@ import { NavbarComponent } from "./navbar.component";
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    RouterLinkWithHref,
+    RouterLinkActive
   ]
 })
 export class NavbarModule { }

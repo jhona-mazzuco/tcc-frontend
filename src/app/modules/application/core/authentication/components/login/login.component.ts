@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Store } from "@ngrx/store";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "@shared/notification/notification.service";
+import { CurrentUserService } from "@shared/services/current-user.service";
 import { AUTHENTICATION_MESSAGE_RESPONSE } from "../../constants/authentication-message-response.constant";
 import { SOCIAL_MEDIA_PROVIDERS } from "../../constants/social-media-providers.constant";
 import { LoginForm } from "./interfaces/login-form.interface";
@@ -20,9 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AngularFireAuth,
-    private store: Store,
     private notification: NotificationService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private currentUserService: CurrentUserService
   ) {
   }
 
@@ -53,7 +54,14 @@ export class LoginComponent implements OnInit {
       .catch(() => this.notification.error(AUTHENTICATION_MESSAGE_RESPONSE.SOCIAL_MEDIA_AUTH_ERROR));
   }
 
-  onSignInSuccess(): void {
-    this.router.navigateByUrl('/horarios');
+  async onSignInSuccess(): Promise<void> {
+    const user = await this.auth.currentUser;
+    this.currentUserService.saveUser({ email: user!.email!, token: user!.uid });
+    const { oldUrl } = this.activatedRoute.snapshot.queryParams;
+    if (oldUrl) {
+      this.router.navigateByUrl(oldUrl);
+    } else {
+      this.router.navigateByUrl('/horarios');
+    }
   }
 }

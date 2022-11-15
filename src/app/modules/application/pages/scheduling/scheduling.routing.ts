@@ -1,16 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
-import { ContainerComponent } from './components/container/container.component';
+import { AuthenticatedGuard } from "../../core/authentication/guards/authenticated.guard";
+import { FieldComponent } from "./components/field/field.component";
+import { SchedulesComponent } from "./components/schedules/schedules.component";
+import { SchedulingComponent } from "./components/scheduling/scheduling.component";
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: ContainerComponent
-      }
+        component: FieldComponent
+      },
+      {
+        path: ':id',
+        component: SchedulesComponent
+      },
+      {
+        path: ':id/agendar',
+        component: SchedulingComponent,
+        canActivate: [AuthenticatedGuard]
+      },
     ])
   ],
   exports: [RouterModule]
 })
-export class SchedulingRoutingModule { }
+export class SchedulingRoutingModule {
+}

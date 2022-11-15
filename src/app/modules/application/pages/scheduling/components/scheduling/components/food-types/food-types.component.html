@@ -1,0 +1,8 @@
+<div class="types">
+  <mat-checkbox *ngFor="let type of foodTypes"
+                [checked]="findIndex(type) > -1"
+                (change)="writeValue(type)"
+                [disabled]="disabled">
+    {{ type }}
+  </mat-checkbox>
+</div>

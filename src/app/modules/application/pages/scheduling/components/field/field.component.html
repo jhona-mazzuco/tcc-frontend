@@ -1,0 +1,13 @@
+<div class="field">
+  <h1>Selecione um campo:</h1>
+
+  <ng-container *ngIf="items$ | async;let items ;else LoadingTemplate">
+    <ng-container *ngFor="let row of items">
+      <app-field-row [row]="row"></app-field-row>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #LoadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

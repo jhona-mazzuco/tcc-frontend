@@ -1,0 +1,23 @@
+.row {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-bottom: 2px solid #c5c5c5;
+  transition: border-bottom-color 350ms;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    border-bottom-color: rgba(0, 0, 0, 0.65);
+  }
+
+  &__title {
+    font-size: 22px;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    color: rgba(0, 0, 0, 0.35);
+    font-weight: 600;
+  }
+}

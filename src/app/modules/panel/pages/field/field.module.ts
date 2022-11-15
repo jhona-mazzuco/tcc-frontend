@@ -24,7 +24,7 @@ import { FieldFormComponent } from './components/field-form/field-form.component
 import { FieldListComponent } from './components/field-list/field-list.component';
 import { IgnoredHoursInputComponent } from './components/ignored-hours-input/ignored-hours-input.component';
 import { FieldRouting } from "./field.routing";
-import { TransformValueToLabelPipe } from './pipes/transform-value-to-label.pipe';
+import { TransformValueToLabelPipe } from '@shared/pipes/transform-value-to-label.pipe';
 import { TransformValueToTimePipe } from './pipes/transform-value-to-time.pipe';
 
 
@@ -35,7 +35,6 @@ import { TransformValueToTimePipe } from './pipes/transform-value-to-time.pipe';
     FieldFormComponent,
     FieldEditComponent,
     IgnoredHoursInputComponent,
-    TransformValueToLabelPipe,
     TransformValueToTimePipe,
   ],
   imports: [
@@ -57,7 +56,8 @@ import { TransformValueToTimePipe } from './pipes/transform-value-to-time.pipe';
     RemoveBtnModule,
     MatPaginatorModule,
     TimepickerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    TransformValueToLabelPipe,
   ],
   providers: [NotificationService]
 })

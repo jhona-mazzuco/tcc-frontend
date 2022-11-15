@@ -1,0 +1,68 @@
+<div class="scheduling">
+  <div class="scheduling__card">
+    <div class="scheduling__header">
+      <h1 class="scheduling__title">
+        Agendar
+      </h1>
+    </div>
+
+    <form class="scheduling__container" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="scheduling__row">
+        <mat-form-field appearance="outline">
+          <mat-label>Data</mat-label>
+          <input matInput [value]="form.get('date')!.value | date: 'dd/MM/yyyy'" [readonly]="true"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Horário</mat-label>
+          <input matInput [value]="form.get('date')!.value + ' ' + (form.get('hour')!.value | transformValueToLabel) | date: 'HH:mm a'"
+                 [readonly]="true"/>
+        </mat-form-field>
+      </div>
+
+      <div class="scheduling__row">
+        <mat-checkbox
+          color="primary"
+          [(ngModel)]="hasFood"
+          (ngModelChange)="onHasFoodChange()"
+          [ngModelOptions]="{ standalone: true }">
+          Possui comida?
+        </mat-checkbox>
+      </div>
+
+      <div class="scheduling__food" [@expandAnimation]="hasFood">
+        <ng-container *ngIf="hasFood" formGroupName="food">
+          <div class="scheduling__row">
+            <mat-form-field appearance="outline">
+              <mat-label>Quantidade de pessoas</mat-label>
+              <input matInput type="number" formControlName="peopleNumber" [min]="1"/>
+              <mat-error *ngIf="form.get('food.peopleNumber')?.touched && form.get('food.peopleNumber')?.hasError('required')"></mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="scheduling__group">
+            <app-food-types formControlName="foodTypes"></app-food-types>
+            <mat-error *ngIf="form.get('food.foodTypes')?.touched && form.get('food.foodTypes')?.hasError('required')">
+              Selecione um tipo de comida!
+            </mat-error>
+          </div>
+
+          <div class="scheduling__row scheduling__row--full">
+            <mat-form-field appearance="outline">
+              <mat-label>Observação</mat-label>
+              <textarea matInput [rows]="4" formControlName="obs"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="scheduling__row">
+            <label class="scheduling__info">*Valor será cobrado a parte</label>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="scheduling__row scheduling__row--center">
+        <button mat-raised-button color="primary">Agendar</button>
+      </div>
+    </form>
+  </div>
+</div>

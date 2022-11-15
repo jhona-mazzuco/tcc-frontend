@@ -1,0 +1,26 @@
+.navbar {
+  &__logged {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__routes {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    gap: 8px;
+  }
+
+  &__unauthenticated {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+}

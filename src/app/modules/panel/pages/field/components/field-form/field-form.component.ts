@@ -3,11 +3,11 @@ import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@ang
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
 import * as moment from "moment";
-import { takeUntil, tap } from "rxjs";
+import { debounceTime, distinctUntilChanged, takeLast, takeUntil, tap } from "rxjs";
 import { FieldConfigForm } from "../../interfaces/field-config-form.interface";
 import { FieldForm } from "../../interfaces/field-form.interface";
-import { Field } from "../../interfaces/field.interface";
-import { TransformValueToLabelPipe } from "../../pipes/transform-value-to-label.pipe";
+import { Field } from "@shared/interfaces/field.interface";
+import { TransformValueToLabelPipe } from "@shared/pipes/transform-value-to-label.pipe";
 
 @Component({
   selector: 'app-field-form',
@@ -42,6 +42,7 @@ export class FieldFormComponent extends BaseComponent implements OnInit, OnDestr
       name: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       config: this.fb.group<FieldConfigForm>({
+        price: new FormControl(0, [Validators.required, Validators.min(1)]),
         startAt: new FormControl(8 * 60, Validators.required),
         duration: new FormControl(60, Validators.required),
         ignoredHours: new FormControl(null)
@@ -67,6 +68,7 @@ export class FieldFormComponent extends BaseComponent implements OnInit, OnDestr
     configForm.get('duration')!.valueChanges
       .pipe(
         takeUntil(this.destroy$),
+        debounceTime(650),
         tap((value) => this.generateIgnoredHours(configForm.get('startAt')!.value!, value!))
       ).subscribe();
 

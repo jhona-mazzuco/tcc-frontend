@@ -16,6 +16,25 @@
               </mat-error>
             </mat-form-field>
 
+            <div class="field__row" formGroupName="config">
+              <mat-form-field appearance="outline">
+                <mat-label>Duração (minutos)</mat-label>
+                <input matInput type="number" formControlName="duration" [min]="10">
+                <span matSuffix>min</span>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Valor</mat-label>
+                <input matInput type="number" formControlName="price" [min]="0">
+                <span matSuffix>R$</span>
+                <mat-error *ngIf="form.get('config.price')?.touched && form.get('config.price')?.hasError('min')">
+                  Insira um valor!
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field__group">
             <mat-form-field appearance="outline">
               <mat-label>Descrição</mat-label>
               <textarea matInput formControlName="description" [rows]="5"></textarea>
@@ -24,19 +43,12 @@
               </mat-error>
             </mat-form-field>
           </div>
+        </div>
 
-          <div class="field__group" formGroupName="config">
-            <mat-form-field appearance="outline">
-              <mat-label>Duração (minutos)</mat-label>
-              <input matInput type="number" formControlName="duration" [min]="10">
-              <span matSuffix>min</span>
-            </mat-form-field>
 
-            <div class="field__row field__row--start-at">
-              <mat-label>Horário de Início:</mat-label>
-              <app-timepicker formControlName="startAt"></app-timepicker>
-            </div>
-          </div>
+        <div class="field__group field__row--start-at" formGroupName="config">
+          <mat-label>Horário de Início:</mat-label>
+          <app-timepicker formControlName="startAt"></app-timepicker>
         </div>
 
         <div class="field__group field__group--ignored-our" formGroupName="config">
