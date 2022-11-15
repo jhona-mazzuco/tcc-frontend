@@ -4,6 +4,7 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from "@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 // @ts-ignore
 import * as _moment from "moment";
+// @ts-ignore
 import { default as _rollupMoment, Moment } from "moment";
 
 const moment = _rollupMoment || _moment;
