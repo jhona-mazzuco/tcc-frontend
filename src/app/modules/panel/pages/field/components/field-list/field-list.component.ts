@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Field } from "@shared/interfaces/field.interface";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
 import { catchError, Observable, takeUntil, tap } from "rxjs";
 import { FIELD_HEADER_COLUMNS } from "../../constants/field-header-columns.constant";
-import { Field } from "@shared/interfaces/field.interface";
 import { FieldService } from "../../services/field.service";
 
 @Component({

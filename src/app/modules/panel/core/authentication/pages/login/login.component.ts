@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { CurrentUserService } from "@shared/services/current-user.service";
-import { catchError, finalize, takeUntil, tap } from "rxjs";
+import { UserAuthenticated } from "@shared/interfaces/user-authenticated.interface";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
-import { UserAuthenticated } from "@shared/interfaces/user-authenticated.interface";
+import { CurrentUserService } from "@shared/services/current-user.service";
+import { catchError, finalize, takeUntil, tap } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { FEEDBACK_MESSAGES } from "./constants/feedback-messages.constant";
 

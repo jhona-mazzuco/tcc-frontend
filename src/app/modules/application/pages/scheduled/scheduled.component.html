@@ -1,0 +1,13 @@
+<ng-container *ngIf="items$ | async;let items;else LoadingTemplate">
+  <div class="scheduled">
+    <h1>Meus horários</h1>
+
+    <div class="scheduled__container">
+      <app-scheduled-table [rows]="items"></app-scheduled-table>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #LoadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

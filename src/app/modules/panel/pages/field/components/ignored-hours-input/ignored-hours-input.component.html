@@ -1,9 +1,9 @@
 <div class="ignored-hours">
-  <div class="ignored-hours__column" *ngFor="let day of days">
+  <div *ngFor="let day of days" class="ignored-hours__column">
     <b class="ignored-hours__title">{{ day }}</b>
-    <mat-checkbox *ngFor="let value of suggestions" [disabled]="disabled"
+    <mat-checkbox (change)="writeValue({ day,  hour: value })" *ngFor="let value of suggestions"
                   [checked]="indexOfIgnoredHour({day, hour: value}) > -1"
-                  (change)="writeValue({ day,  hour: value })">
+                  [disabled]="disabled">
       {{ value | transformValueToLabel }}
     </mat-checkbox>
   </div>

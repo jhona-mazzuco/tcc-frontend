@@ -2,7 +2,7 @@ import { DatePipe } from "@angular/common";
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { finalize, Observable, ReplaySubject, takeUntil, tap } from "rxjs";
+import { Observable, ReplaySubject, takeUntil, tap } from "rxjs";
 import { SchedulingService } from "../../../../services/scheduling.service";
 import { Schedule } from "../../interfaces/schedule.interface";
 import { SchedulingFilterForm } from "./interfaces/scheduling-filter-form.interface";

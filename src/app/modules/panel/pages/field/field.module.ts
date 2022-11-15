@@ -15,6 +15,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { NotificationService } from "@shared/notification/notification.service";
+import { TransformValueToLabelPipe } from '@shared/pipes/transform-value-to-label.pipe';
 import { EditBtnModule } from "../../shared/components/edit-btn/edit-btn.module";
 import { RemoveBtnModule } from "../../shared/components/remove-btn/remove-btn.module";
 import { TimepickerModule } from "../../shared/components/timepicker/timepicker.module";
@@ -24,7 +25,6 @@ import { FieldFormComponent } from './components/field-form/field-form.component
 import { FieldListComponent } from './components/field-list/field-list.component';
 import { IgnoredHoursInputComponent } from './components/ignored-hours-input/ignored-hours-input.component';
 import { FieldRouting } from "./field.routing";
-import { TransformValueToLabelPipe } from '@shared/pipes/transform-value-to-label.pipe';
 import { TransformValueToTimePipe } from './pipes/transform-value-to-time.pipe';
 
 

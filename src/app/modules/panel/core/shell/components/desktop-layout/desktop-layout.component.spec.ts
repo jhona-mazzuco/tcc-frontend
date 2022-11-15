@@ -8,9 +8,9 @@ describe('DesktopLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DesktopLayoutComponent ]
+      declarations: [DesktopLayoutComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

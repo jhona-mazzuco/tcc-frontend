@@ -2,11 +2,9 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
-import { MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { Moment } from "moment";
-import * as _moment from 'moment';
 // @ts-ignore
-import { default as _rollupMoment} from 'moment';
+import * as _moment from "moment";
+import { default as _rollupMoment, Moment } from "moment";
 
 const moment = _rollupMoment || _moment;
 

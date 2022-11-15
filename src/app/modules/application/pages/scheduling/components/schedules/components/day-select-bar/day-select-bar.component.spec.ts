@@ -8,9 +8,9 @@ describe('DaySelectBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DaySelectBarComponent ]
+      declarations: [DaySelectBarComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DaySelectBarComponent);
     component = fixture.componentInstance;

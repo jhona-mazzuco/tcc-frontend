@@ -14,6 +14,7 @@ export class ConfirmationModalComponent {
   @Input() message: string = 'Clique em continuar caso deseja continuar!';
   @Input() cancelBtn: string = 'Cancelar';
   @Input() continueBtn: string = 'Continuar';
+
   constructor(public ref: MatDialogRef<ConfirmationModalComponent>) {
   }
 }

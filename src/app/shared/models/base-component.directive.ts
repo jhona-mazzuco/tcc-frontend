@@ -1,7 +1,7 @@
 import { Directive } from "@angular/core";
-import { Observable, of, ReplaySubject } from "rxjs";
 import { GENERIC_ERROR_MESSAGE } from "@shared/constants/generic-error-message.constant";
 import { NotificationService } from "@shared/notification/notification.service";
+import { Observable, of, ReplaySubject } from "rxjs";
 
 @Directive()
 export class BaseComponent {

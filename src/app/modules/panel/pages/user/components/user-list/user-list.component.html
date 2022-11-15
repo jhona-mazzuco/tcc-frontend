@@ -7,7 +7,7 @@
     <mat-card-content>
       <ng-container *ngIf="!loading;else LoadingTemplate">
         <ng-container *ngIf="!hasError; else ErrorTemplate">
-          <app-user-table [users]="users" (reloadItems)="fetchUsers()"></app-user-table>
+          <app-user-table (reloadItems)="fetchUsers()" [users]="users"></app-user-table>
         </ng-container>
 
       </ng-container>

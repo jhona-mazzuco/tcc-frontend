@@ -8,9 +8,9 @@ describe('IgnoredHoursInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IgnoredHoursInputComponent ]
+      declarations: [IgnoredHoursInputComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(IgnoredHoursInputComponent);
     component = fixture.componentInstance;

@@ -4,17 +4,17 @@
       <mat-card-title>Acesse sua conta:</mat-card-title>
     </mat-card-header>
 
-    <form class="container__card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="container__card">
       <mat-card-content>
         <div class="container__form">
           <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
-            <input matInput type="email" formControlName="email" />
+            <input formControlName="email" matInput type="email"/>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
-            <input matInput type="password" formControlName="password" />
+            <input formControlName="password" matInput type="password"/>
           </mat-form-field>
         </div>
       </mat-card-content>

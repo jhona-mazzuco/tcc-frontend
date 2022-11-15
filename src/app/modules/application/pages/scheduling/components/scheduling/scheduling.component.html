@@ -6,36 +6,36 @@
       </h1>
     </div>
 
-    <form class="scheduling__container" [formGroup]="form" (ngSubmit)="submit()">
+    <form (ngSubmit)="submit()" [formGroup]="form" class="scheduling__container">
       <div class="scheduling__row">
         <mat-form-field appearance="outline">
           <mat-label>Data</mat-label>
-          <input matInput [value]="form.get('date')!.value | date: 'dd/MM/yyyy'" [readonly]="true"/>
+          <input [readonly]="true" [value]="form.get('date')!.value | date: 'dd/MM/yyyy'" matInput/>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Horário</mat-label>
-          <input matInput [value]="form.get('date')!.value + ' ' + (form.get('hour')!.value | transformValueToLabel) | date: 'HH:mm a'"
-                 [readonly]="true"/>
+          <input [readonly]="true" [value]="form.get('date')!.value + ' ' + (form.get('hour')!.value | transformValueToLabel) | date: 'HH:mm a'"
+                 matInput/>
         </mat-form-field>
       </div>
 
       <div class="scheduling__row">
         <mat-checkbox
-          color="primary"
-          [(ngModel)]="hasFood"
           (ngModelChange)="onHasFoodChange()"
-          [ngModelOptions]="{ standalone: true }">
+          [(ngModel)]="hasFood"
+          [ngModelOptions]="{ standalone: true }"
+          color="primary">
           Possui comida?
         </mat-checkbox>
       </div>
 
-      <div class="scheduling__food" [@expandAnimation]="hasFood">
+      <div [@expandAnimation]="hasFood" class="scheduling__food">
         <ng-container *ngIf="hasFood" formGroupName="food">
           <div class="scheduling__row">
             <mat-form-field appearance="outline">
               <mat-label>Quantidade de pessoas</mat-label>
-              <input matInput type="number" formControlName="peopleNumber" [min]="1"/>
+              <input [min]="1" formControlName="peopleNumber" matInput type="number"/>
               <mat-error *ngIf="form.get('food.peopleNumber')?.touched && form.get('food.peopleNumber')?.hasError('required')"></mat-error>
             </mat-form-field>
           </div>
@@ -50,7 +50,7 @@
           <div class="scheduling__row scheduling__row--full">
             <mat-form-field appearance="outline">
               <mat-label>Observação</mat-label>
-              <textarea matInput [rows]="4" formControlName="obs"></textarea>
+              <textarea [rows]="4" formControlName="obs" matInput></textarea>
             </mat-form-field>
           </div>
 
@@ -61,7 +61,7 @@
       </div>
 
       <div class="scheduling__row scheduling__row--center">
-        <button mat-raised-button color="primary">Agendar</button>
+        <button color="primary" mat-raised-button>Agendar</button>
       </div>
     </form>
   </div>

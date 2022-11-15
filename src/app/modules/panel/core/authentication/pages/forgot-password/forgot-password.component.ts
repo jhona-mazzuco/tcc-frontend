@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { catchError, finalize, of, takeUntil, tap } from "rxjs";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
+import { catchError, finalize, of, takeUntil, tap } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { INVALID_EMAIL } from "../login/constants/invalid-email.constant";
 import { FEEDBACK_MESSAGES } from "./constant/feedback-messages.constant";
@@ -50,7 +50,7 @@ export class ForgotPasswordComponent extends BaseComponent implements OnInit {
       .pipe(
         takeUntil(this.destroy$),
         tap(this.onSendSuccess.bind(this)),
-        catchError(({  code  }) => this.onSendError(code)),
+        catchError(({ code }) => this.onSendError(code)),
         finalize(() => this.loading = false)
       ).subscribe();
   }

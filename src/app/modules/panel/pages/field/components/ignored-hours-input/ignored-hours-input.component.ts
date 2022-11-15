@@ -10,13 +10,6 @@ import { IgnoredHour } from "../../interfaces/ignored-hour.interface";
 })
 export class IgnoredHoursInputComponent implements ControlValueAccessor, OnInit {
   @Input() suggestions!: number[];
-
-  onChange = (value: IgnoredHour[]) => {
-  };
-
-  onTouched = () => {
-  };
-
   disabled!: boolean;
   days: string[] = [];
 
@@ -25,6 +18,12 @@ export class IgnoredHoursInputComponent implements ControlValueAccessor, OnInit 
       ngControl.valueAccessor = this;
     }
   }
+
+  onChange = (value: IgnoredHour[]) => {
+  };
+
+  onTouched = () => {
+  };
 
   ngOnInit(): void {
     this.fillDays();

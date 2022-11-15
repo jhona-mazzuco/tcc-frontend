@@ -6,9 +6,9 @@ import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFor
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
-import { of, throwError } from "rxjs";
 import { environment } from "@environment";
 import { NotificationService } from "@shared/notification/notification.service";
+import { of, throwError } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { INVALID_EMAIL } from "../login/constants/invalid-email.constant";
 import { FEEDBACK_MESSAGES } from "./constant/feedback-messages.constant";

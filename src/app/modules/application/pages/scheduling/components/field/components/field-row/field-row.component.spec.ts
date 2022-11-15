@@ -8,9 +8,9 @@ describe('FieldRowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FieldRowComponent ]
+      declarations: [FieldRowComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FieldRowComponent);
     component = fixture.componentInstance;

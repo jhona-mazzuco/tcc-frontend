@@ -34,4 +34,5 @@ import { ShellComponent } from "./core/shell/shell.component";
   ],
   exports: [RouterModule]
 })
-export class ApplicationRoutingModule { }
+export class ApplicationRoutingModule {
+}

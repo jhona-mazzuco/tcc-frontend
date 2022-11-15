@@ -1,0 +1,9 @@
+@import "src/app/shared/scss/card";
+
+.scheduled {
+  @include card;
+
+  &__container {
+    padding: 0 1.5rem 1rem;
+  }
+}

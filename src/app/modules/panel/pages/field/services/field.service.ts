@@ -2,9 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { environment } from "@environment";
 import { CreateOrUpdateResponse } from "@shared/interfaces/create-or-update-response.interface";
+import { Field } from "@shared/interfaces/field.interface";
 import { Observable } from "rxjs";
 import { ResponseMessage } from "../../../shared/interfaces/response-message.interface";
-import { Field } from "@shared/interfaces/field.interface";
 
 @Injectable({
   providedIn: 'root'

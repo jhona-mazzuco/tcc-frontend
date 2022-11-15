@@ -8,9 +8,9 @@ describe('ContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShellComponent ]
+      declarations: [ShellComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ShellComponent);
     component = fixture.componentInstance;

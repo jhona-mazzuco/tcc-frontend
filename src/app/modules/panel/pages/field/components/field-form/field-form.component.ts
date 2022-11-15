@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { Field } from "@shared/interfaces/field.interface";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
+import { TransformValueToLabelPipe } from "@shared/pipes/transform-value-to-label.pipe";
 import * as moment from "moment";
-import { debounceTime, distinctUntilChanged, takeLast, takeUntil, tap } from "rxjs";
+import { debounceTime, takeUntil, tap } from "rxjs";
 import { FieldConfigForm } from "../../interfaces/field-config-form.interface";
 import { FieldForm } from "../../interfaces/field-form.interface";
-import { Field } from "@shared/interfaces/field.interface";
-import { TransformValueToLabelPipe } from "@shared/pipes/transform-value-to-label.pipe";
 
 @Component({
   selector: 'app-field-form',

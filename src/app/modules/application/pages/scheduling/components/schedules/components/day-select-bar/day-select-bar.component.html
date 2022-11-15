@@ -1,22 +1,22 @@
 <div class="bar">
-  <button mat-icon-button class="bar__btn" (click)="previous()">
+  <button (click)="previous()" class="bar__btn" mat-icon-button>
     <mat-icon>chevron_left</mat-icon>
   </button>
 
-  <div class="bar__middle" (click)="picker.open()">
+  <div (click)="picker.open()" class="bar__middle">
     <span class="bar__day">
       {{ date.toDate() | date: 'dd MMMM' }}
     </span>
     <mat-form-field style="width:1px;visibility:hidden;">
-      <input matInput [matDatepicker]="picker" (dateInput)="writeValue($event.value)">
-      <mat-datepicker touchUi #picker></mat-datepicker>
+      <input (dateInput)="writeValue($event.value)" [matDatepicker]="picker" matInput>
+      <mat-datepicker #picker touchUi></mat-datepicker>
     </mat-form-field>
     <mat-icon>
       expand_more
     </mat-icon>
   </div>
 
-  <button mat-icon-button class="bar__btn" (click)="next()">
+  <button (click)="next()" class="bar__btn" mat-icon-button>
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>

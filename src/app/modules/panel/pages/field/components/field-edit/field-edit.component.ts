@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
+import { Field } from "@shared/interfaces/field.interface";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
 import { catchError, finalize, takeUntil, tap } from "rxjs";
 import { EDIT_FIELD_LOADING } from "../../constants/edit-field-loading.constant";
-import { Field } from "@shared/interfaces/field.interface";
 import { FieldService } from "../../services/field.service";
 
 @Component({

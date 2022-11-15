@@ -13,4 +13,5 @@ import { DashboardRouting } from "./dashboard.routing";
     DashboardRouting
   ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}

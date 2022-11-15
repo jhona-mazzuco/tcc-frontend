@@ -9,13 +9,14 @@ import { FieldRowData } from "../components/field/interfaces/field-row-data.inte
   providedIn: 'root'
 })
 export class FieldService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   fetch(): Observable<FieldRowData[]> {
-    return this.http.get<FieldRowData[]>(`${environment.api}/field`);
+    return this.http.get<FieldRowData[]>(`${ environment.api }/field`);
   }
 
   findById(id: string): Observable<Field> {
-    return this.http.get<Field>(`${environment.api}/field/${id}`);
+    return this.http.get<Field>(`${ environment.api }/field/${ id }`);
   }
 }

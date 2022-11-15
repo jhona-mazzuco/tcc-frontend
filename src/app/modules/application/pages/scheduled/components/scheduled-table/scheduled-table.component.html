@@ -1,0 +1,24 @@
+<table [dataSource]="rows" class="table" mat-table>
+  <ng-container matColumnDef="date">
+    <th *matHeaderCellDef mat-header-cell>Data</th>
+    <td *matCellDef="let element" mat-cell>{{ element.date | date: 'dd/MM/yyyy' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="hour">
+    <th *matHeaderCellDef mat-header-cell>Horário</th>
+    <td *matCellDef="let element" mat-cell>{{ element.hour | transformValueToLabel }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th *matHeaderCellDef mat-header-cell>Preço</th>
+    <td *matCellDef="let element" mat-cell>{{ element.price | currency }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="field">
+    <th *matHeaderCellDef mat-header-cell>Campo</th>
+    <td *matCellDef="let element" mat-cell>{{ element.field }}</td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

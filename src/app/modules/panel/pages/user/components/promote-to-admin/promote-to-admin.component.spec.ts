@@ -8,9 +8,9 @@ describe('PromoteToAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PromoteToAdminComponent ]
+      declarations: [PromoteToAdminComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

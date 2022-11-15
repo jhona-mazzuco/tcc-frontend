@@ -8,9 +8,9 @@ describe('DemoteToUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DemoteToUserComponent ]
+      declarations: [DemoteToUserComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

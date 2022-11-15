@@ -1,18 +1,18 @@
 <app-auth-container>
   <div class="login">
-    <form class="login__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="login__form">
       <mat-form-field appearance="outline" color="accent">
         <mat-label>E-mail</mat-label>
-        <input matInput formControlName="email"/>
+        <input formControlName="email" matInput/>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Senha</mat-label>
-        <input matInput type="password" formControlName="password"/>
+        <input formControlName="password" matInput type="password"/>
       </mat-form-field>
 
       <div class="login__submit">
-        <button class="login__enter" mat-raised-button color="accent">Entrar</button>
+        <button class="login__enter" color="accent" mat-raised-button>Entrar</button>
       </div>
     </form>
 
@@ -23,15 +23,15 @@
     <span class="login__message">Faça a autenticação com sua rede social:</span>
 
     <div class="login__authentication">
-      <button class="login__auth-btn" (click)="signInWithSocialMedia('facebook')" mat-icon-button>
+      <button (click)="signInWithSocialMedia('facebook')" class="login__auth-btn" mat-icon-button>
         <mat-icon svgIcon="facebook"></mat-icon>
       </button>
 
-      <button class="login__auth-btn" (click)="signInWithSocialMedia('google')" mat-icon-button>
+      <button (click)="signInWithSocialMedia('google')" class="login__auth-btn" mat-icon-button>
         <mat-icon svgIcon="google"></mat-icon>
       </button>
 
-      <button class="login__auth-btn" (click)="signInWithSocialMedia('twitter')" mat-icon-button>
+      <button (click)="signInWithSocialMedia('twitter')" class="login__auth-btn" mat-icon-button>
         <mat-icon svgIcon="twitter"></mat-icon>
       </button>
     </div>

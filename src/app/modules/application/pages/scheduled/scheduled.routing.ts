@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
 import { ScheduledComponent } from "./scheduled.component";
 
@@ -14,4 +13,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ScheduledRoutingModule { }
+export class ScheduledRoutingModule {
+}

@@ -13,7 +13,6 @@ import { LoadingComponent } from "@shared/components/loading/loading.component";
 import { NotificationService } from "@shared/notification/notification.service";
 import { TransformValueToLabelPipe } from "@shared/pipes/transform-value-to-label.pipe";
 import { NavbarModule } from "../../core/navbar/navbar.module";
-import { ShellComponent } from '../../core/shell/shell.component';
 import { FieldRowComponent } from './components/field/components/field-row/field-row.component';
 import { FieldComponent } from './components/field/field.component';
 import { DaySelectBarComponent } from './components/schedules/components/day-select-bar/day-select-bar.component';

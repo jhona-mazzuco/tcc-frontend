@@ -11,17 +11,17 @@ export class FoodTypesComponent implements ControlValueAccessor {
   disabled!: boolean;
   foodTypes = FOOD_TYPES_OPTIONS;
 
-  onChange = (value: string[] | null) => {
-  };
-
-  onTouched = () => {
-  };
-
   constructor(@Optional() @Self() public ngControl: NgControl) {
     if (ngControl != null) {
       ngControl.valueAccessor = this;
     }
   }
+
+  onChange = (value: string[] | null) => {
+  };
+
+  onTouched = () => {
+  };
 
   registerOnChange(fn: (value: string[] | null) => void): void {
     this.onChange = fn;
