@@ -1,0 +1,28 @@
+<div class="modal">
+  <ng-container *ngIf="data$ | async;let data; else LoadingTemplate">
+    <div class="modal__content">
+      <div class="modal__group">
+        <b class="modal__title">Quantidade de pessoas:</b>
+        <p class="modal__value">{{ data.peopleNumber }}</p>
+      </div>
+
+      <div class="modal__group">
+        <b class="modal__title">Comidas:</b>
+        <ul class="modal__list">
+          <li *ngFor="let food of data.foodTypes">{{ food }}</li>
+        </ul>
+      </div>
+
+      <div class="modal__group">
+        <b class="modal__title">Observação:</b>
+        <p class="modal__value">{{ data.obs ?? 'Não possui observação' }}</p>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #LoadingTemplate>
+  <div class="modal__loading">
+    <app-loading></app-loading>
+  </div>
+</ng-template>

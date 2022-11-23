@@ -1,0 +1,12 @@
+.dashboard {
+  width: 100%;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+
+    &--space-around {
+      justify-content: space-around;
+    }
+  }
+}

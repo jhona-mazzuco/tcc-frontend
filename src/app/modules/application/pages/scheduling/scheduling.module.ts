@@ -9,13 +9,13 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { DaySelectContainerModule } from "@shared/components/day-select-container/day-select-container.module";
 import { LoadingComponent } from "@shared/components/loading/loading.component";
 import { NotificationService } from "@shared/notification/notification.service";
 import { TransformValueToLabelPipe } from "@shared/pipes/transform-value-to-label.pipe";
 import { NavbarModule } from "../../core/navbar/navbar.module";
 import { FieldRowComponent } from './components/field/components/field-row/field-row.component';
 import { FieldComponent } from './components/field/field.component';
-import { DaySelectBarComponent } from './components/schedules/components/day-select-bar/day-select-bar.component';
 import { ScheduleItemComponent } from './components/schedules/components/schedule-item/schedule-item.component';
 import { TranslateStatusPipe } from './components/schedules/pipes/translate-status.pipe';
 import { SchedulesComponent } from './components/schedules/schedules.component';
@@ -26,7 +26,6 @@ import { SchedulingRoutingModule } from "./scheduling.routing";
 @NgModule({
   declarations: [
     SchedulesComponent,
-    DaySelectBarComponent,
     FieldComponent,
     FieldRowComponent,
     ScheduleItemComponent,
@@ -49,7 +48,8 @@ import { SchedulingRoutingModule } from "./scheduling.routing";
     MatSnackBarModule,
     LoadingComponent,
     TransformValueToLabelPipe,
-    MatCheckboxModule
+    MatCheckboxModule,
+    DaySelectContainerModule
   ],
   providers: [NotificationService]
 })

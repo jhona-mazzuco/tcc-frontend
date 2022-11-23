@@ -1,0 +1,31 @@
+<app-day-select-container (onDaySelect)="fetch($event)">
+  <ng-container *ngIf="items$ | async; let items; else LoadingTemplate">
+    <div class="dashboard">
+      <div class="dashboard__row dashboard__row--space-around">
+        <app-widget>
+          <mat-icon>menu_book</mat-icon>
+          <app-widget-title>Horários Agendados</app-widget-title>
+          <app-widget-value>{{ items.length }}</app-widget-value>
+        </app-widget>
+
+        <app-widget>
+          <mat-icon>savings</mat-icon>
+          <app-widget-title>Ganho Estimado</app-widget-title>
+          <app-widget-value>{{ items | sumPrices | currency }}</app-widget-value>
+        </app-widget>
+
+        <app-widget>
+          <mat-icon>restaurant</mat-icon>
+          <app-widget-title>Almoços/Jantas</app-widget-title>
+          <app-widget-value>{{ items | sumFoodToMake }}</app-widget-value>
+        </app-widget>
+      </div>
+
+      <app-schedule-list [schedules]="items"></app-schedule-list>
+    </div>
+  </ng-container>
+</app-day-select-container>
+
+<ng-template #LoadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

@@ -1,0 +1,15 @@
+<div class="widget">
+  <div class="widget__icon">
+    <ng-content select="mat-icon"></ng-content>
+  </div>
+
+  <div class="widget__info">
+    <h1 class="widget__title">
+      <ng-content select="app-widget-title"></ng-content>
+    </h1>
+
+    <div class="widget__container">
+      <ng-content select="app-widget-value"></ng-content>
+    </div>
+  </div>
+</div>

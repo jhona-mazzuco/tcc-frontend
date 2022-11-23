@@ -1,10 +1,11 @@
 import { state, style, trigger } from "@angular/animations";
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GENERIC_ERROR_MESSAGE } from "@shared/constants/generic-error-message.constant";
+import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
-import { catchError, Observable, of, ReplaySubject, takeUntil, tap } from "rxjs";
+import { catchError, Observable, of, takeUntil, tap } from "rxjs";
 import { SchedulingService } from "../../../../services/scheduling.service";
 import { FoodForm } from "./interfaces/food-form.interface";
 import { SchedulingForm } from "./interfaces/scheduling-form.interface";
@@ -31,23 +32,18 @@ import { Scheduling } from "./interfaces/scheduling.interface";
     ])
   ]
 })
-export class SchedulingComponent implements OnInit, OnDestroy {
-  destroy$ = new ReplaySubject(1);
+export class SchedulingComponent extends BaseComponent implements OnInit {
   form!: FormGroup<SchedulingForm>;
   hasFood = false;
 
   constructor(
     private fb: FormBuilder,
-    private notification: NotificationService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private service: SchedulingService
+    private service: SchedulingService,
+    notification: NotificationService,
   ) {
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+    super(notification);
   }
 
   ngOnInit(): void {

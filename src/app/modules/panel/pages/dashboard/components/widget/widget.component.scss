@@ -1,0 +1,48 @@
+$gray: rgba(197, 197, 197, 0.25);
+
+.widget {
+  padding: 1rem 1.5rem;
+  border: 1px solid $gray;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+
+  &__icon {
+    width: 50px;
+    padding: 14px;
+    background: $gray;
+    border-radius: 6px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c5c5c5;
+
+    mat-icon {
+      height: 36px;
+      font-size: 36px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 0;
+  }
+
+  &__container {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}

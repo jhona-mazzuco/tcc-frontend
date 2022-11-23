@@ -1,16 +1,12 @@
-<div class="schedules">
-  <form [formGroup]="form" class="schedules__header">
-    <app-day-select-bar formControlName="date"></app-day-select-bar>
-  </form>
-
-  <div class="schedules__container">
-    <ng-container *ngIf="items$ | async;let items; else LoadingTemplate">
+<app-day-select-container (onDaySelect)="onChangeDate($event)">
+  <ng-container *ngIf="items$ | async;let items; else LoadingTemplate">
+    <div class="schedules">
       <ng-container *ngFor="let item of items">
-        <app-schedule-item [data]="item" [date]="form.value.date!" [id]="id"></app-schedule-item>
+        <app-schedule-item [data]="item" [date]="date" [id]="id"></app-schedule-item>
       </ng-container>
-    </ng-container>
-  </div>
-</div>
+    </div>
+  </ng-container>
+</app-day-select-container>
 
 <ng-template #LoadingTemplate>
   <app-loading></app-loading>

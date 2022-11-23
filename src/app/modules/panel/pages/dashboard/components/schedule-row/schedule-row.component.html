@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="row__card">
+    <span class="row__value">{{ schedule.field }}</span>
+    <span class="row__value">{{ schedule.user }}</span>
+    <span class="row__value">{{ schedule.price | currency }}</span>
+    <span class="row__value row__value--food">
+      <mat-icon *ngIf="schedule.hasFood">check</mat-icon>
+    </span>
+    <span class="row__action">
+      <button mat-button color="primary" (click)="openFoodModal()" [disabled]="!schedule.hasFood">Ver comida</button>
+      <button mat-button color="warn" (click)="cancelSchedule()">Desmarcar</button>
+    </span>
+  </div>
+</div>

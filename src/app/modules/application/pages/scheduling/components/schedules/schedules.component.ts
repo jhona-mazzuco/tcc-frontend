@@ -1,11 +1,11 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
-import { Observable, ReplaySubject, takeUntil, tap } from "rxjs";
+import { BaseComponent } from "@shared/models/base-component.directive";
+import { NotificationService } from "@shared/notification/notification.service";
+import { Observable } from "rxjs";
 import { SchedulingService } from "../../../../services/scheduling.service";
 import { Schedule } from "../../interfaces/schedule.interface";
-import { SchedulingFilterForm } from "./interfaces/scheduling-filter-form.interface";
 
 @Component({
   selector: 'app-schedules',
@@ -13,49 +13,25 @@ import { SchedulingFilterForm } from "./interfaces/scheduling-filter-form.interf
   styleUrls: ['./schedules.component.scss'],
   providers: [DatePipe]
 })
-export class SchedulesComponent implements OnInit, OnDestroy {
-  destroy$ = new ReplaySubject(1);
-
+export class SchedulesComponent extends BaseComponent implements OnInit, OnDestroy {
   id!: string;
-  form!: FormGroup<SchedulingFilterForm>;
   items$!: Observable<Schedule[]>;
+  date!: string;
 
   constructor(
-    private fb: FormBuilder,
-    private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
     private schedulingService: SchedulingService,
+    notification: NotificationService
   ) {
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+    super(notification);
   }
 
   ngOnInit(): void {
-    this.fillId();
-    this.buildForm();
-  }
-
-  fillId(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')!;
   }
 
-  buildForm(): void {
-    this.form = this.fb.group({
-      date: new FormControl(this.datePipe.transform(new Date(), 'yyyy-MM-dd'))
-    });
-
-    this.form.valueChanges.pipe(
-      takeUntil(this.destroy$),
-      tap(({ date }) => this.onChangeDate(date!))
-    ).subscribe();
-
-    this.onChangeDate(this.form.value.date!);
-  }
-
-  onChangeDate(date: string): void {
-    this.items$ = this.schedulingService.getSchedulesOfDay(this.id, date);
+  onChangeDate(date: string | null): void {
+    this.date = date!;
+    this.items$ = this.schedulingService.getSchedulesOfDay(this.id, date!);
   }
 }

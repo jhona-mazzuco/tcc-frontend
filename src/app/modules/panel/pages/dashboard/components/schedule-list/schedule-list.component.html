@@ -1,0 +1,23 @@
+<div class="list">
+  <ng-container *ngIf="schedules?.length; else EmptyTemplate">
+    <div class="list__header">
+      <span class="list__column">Campo</span>
+      <span class="list__column">Usuário</span>
+      <span class="list__column">Preço</span>
+      <span class="list__column list__column--center">Possui comida?</span>
+      <span class="list__column list__column--center">Ações</span>
+    </div>
+
+    <div class="list__container">
+      <cdk-virtual-scroll-viewport itemSize="50">
+        <app-schedule-row *cdkVirtualFor="let item of schedules" [schedule]="item" (removeItem)="removeItem($event)"></app-schedule-row>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #EmptyTemplate>
+  <span class="list__empty">
+    <mat-icon>inbox</mat-icon> Não há horários agendados!
+  </span>
+</ng-template>

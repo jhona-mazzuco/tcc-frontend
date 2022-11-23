@@ -1,0 +1,36 @@
+@import "src/assets/scss/card";
+
+.row {
+  margin: 1rem -6px;
+  padding: 0 8px;
+
+  &__card {
+    @include card;
+    height: 36px;
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr) 10%;
+    width: -webkit-fill-available;
+    align-items: center;
+  }
+
+  &__value {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+
+    &--food {
+      text-align: center;
+      font-size: 10px;
+      color: #5cb85c;
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    button {
+      text-align: center;
+    }
+  }
+}

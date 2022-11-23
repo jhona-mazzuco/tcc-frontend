@@ -1,0 +1,44 @@
+.list {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 0 6px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 10%;
+  }
+
+  &__column {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.35);
+
+    &--center {
+      text-align: center;
+    }
+  }
+
+  &__container {
+    gap: 1rem;
+    box-sizing: content-box;
+    margin: 0 -10px;
+
+    cdk-virtual-scroll-viewport {
+      height: 450px;
+    }
+  }
+
+  &__empty {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-weight: 500;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}

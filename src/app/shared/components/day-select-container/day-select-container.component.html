@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="container__header">
+    <app-day-select-bar [formControl]="control" (ngModelChange)="onDaySelect.emit(control.value)"></app-day-select-bar>
+  </div>
+
+  <div class="container__content">
+    <ng-content></ng-content>
+  </div>
+</div>

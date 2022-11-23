@@ -22,7 +22,7 @@
 
       <div class="scheduling__row">
         <mat-checkbox
-          (ngModelChange)="onHasFoodChange()"
+          (change)="onHasFoodChange()"
           [(ngModel)]="hasFood"
           [ngModelOptions]="{ standalone: true }"
           color="primary">
