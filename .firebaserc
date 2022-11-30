@@ -1,14 +1,15 @@
 {
+  "projects": {
+    "default": "tcc-front-bacdb"
+  },
   "targets": {
     "tcc-front-bacdb": {
       "hosting": {
-        "tcc-frontend": [
-          "tcc-front-bacdb"
+        "tcc-front-bacdb": [
+          "vilson"
         ]
       }
     }
   },
-  "projects": {
-    "default": "tcc-front-bacdb"
-  }
+  "etags": {}
 }

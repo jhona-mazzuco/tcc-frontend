@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "node set-env.js && ng build",
-    "deploy": "npm run build:prod && firebase deploy",
+    "set:env": "node set-env.js",
+    "deploy": "npm run set:env && firebase deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
