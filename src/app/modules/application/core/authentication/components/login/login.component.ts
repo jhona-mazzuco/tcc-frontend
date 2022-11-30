@@ -4,10 +4,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "@shared/notification/notification.service";
 import { CurrentUserService } from "@shared/services/current-user.service";
+import firebase from "firebase/compat/app";
 import { AUTHENTICATION_MESSAGE_RESPONSE } from "../../constants/authentication-message-response.constant";
-import { SOCIAL_MEDIA_PROVIDERS } from "../../constants/social-media-providers.constant";
 import { LoginForm } from "./interfaces/login-form.interface";
-import { SocialMediaProvider } from "./types/social-media-provider.type";
 
 @Component({
   selector: 'app-login',
@@ -48,8 +47,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  signInWithSocialMedia(provider: SocialMediaProvider): void {
-    this.auth.signInWithPopup(SOCIAL_MEDIA_PROVIDERS[provider])
+  signInWithGoogleAccount(): void {
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(this.onSignInSuccess.bind(this))
       .catch(() => this.notification.error(AUTHENTICATION_MESSAGE_RESPONSE.SOCIAL_MEDIA_AUTH_ERROR));
   }
@@ -58,10 +57,6 @@ export class LoginComponent implements OnInit {
     const user = await this.auth.currentUser;
     this.currentUserService.saveUser({ email: user!.email!, token: user!.uid });
     const { oldUrl } = this.activatedRoute.snapshot.queryParams;
-    if (oldUrl) {
-      this.router.navigateByUrl(oldUrl);
-    } else {
-      this.router.navigateByUrl('/horarios');
-    }
+    this.router.navigateByUrl(oldUrl ?? '/horarios');
   }
 }

@@ -20,19 +20,10 @@
 
     <span class="login__or">ou</span>
 
-    <span class="login__message">Faça a autenticação com sua rede social:</span>
-
     <div class="login__authentication">
-      <button (click)="signInWithSocialMedia('facebook')" class="login__auth-btn" mat-icon-button>
-        <mat-icon svgIcon="facebook"></mat-icon>
-      </button>
-
-      <button (click)="signInWithSocialMedia('google')" class="login__auth-btn" mat-icon-button>
+      <button (click)="signInWithGoogleAccount()" class="login__auth-btn" mat-icon-button>
         <mat-icon svgIcon="google"></mat-icon>
-      </button>
-
-      <button (click)="signInWithSocialMedia('twitter')" class="login__auth-btn" mat-icon-button>
-        <mat-icon svgIcon="twitter"></mat-icon>
+        Faça login com sua conta Google
       </button>
     </div>
   </div>
