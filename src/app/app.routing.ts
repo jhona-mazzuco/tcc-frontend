@@ -8,6 +8,7 @@ const routes: Routes = [
   },
   {
     path: 'painel',
+    title: 'Vilson Centro Esportivo - Painel',
     loadChildren: () => import('./modules/panel/panel.module').then(m => m.PanelModule)
   }
 ];

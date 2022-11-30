@@ -5,7 +5,7 @@
   const data = `
 export const environment = {
   production: ${process.env.PRODUCTION},
-  adminApi: "${process.env.ADMIN_API}",
+  api: "${process.env.ADMIN_API}",
   firebase: {
     apiKey: "${process.env.API_KEY}",
     authDomain: "${process.env.AUTH_DOMAIN}",
