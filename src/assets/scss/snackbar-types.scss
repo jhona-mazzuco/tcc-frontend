@@ -1,10 +1,12 @@
-.snackbar {
-  &-error {
-    background: rgba(248, 75, 75, 0.8);
-  }
+:root {
+  .snackbar {
+    &-error {
+      background: rgba(248, 75, 75, 0.8);
+    }
 
-  &-warn {
-    background: rgba(241, 241, 102, 0.8);
-    color: rgba(0, 0, 0, 0.9);
+    &-warn {
+      background: rgba(241, 241, 102, 0.8);
+      color: rgba(0, 0, 0, 0.9);
+    }
   }
 }

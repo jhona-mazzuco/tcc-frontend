@@ -1,0 +1,38 @@
+<app-auth-container>
+  <form class="register" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="email" formControlName="email"/>
+      <mat-error *ngIf="form.get('email')?.touched && form.get('email')?.hasError('required')">
+        Campo Obrigatório!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input #passwordIpt matInput formControlName="password" type="password"/>
+      <mat-icon class="register__visibility" matSuffix (click)="changeVisibility(passwordIpt)">visibility</mat-icon>
+      <mat-error *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')">
+        Campo Obrigatório!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confime a senha</mat-label>
+      <input #passwordConfirmIpt matInput formControlName="passwordConfirm" type="password"/>
+      <mat-icon class="register__visibility" matSuffix (click)="changeVisibility(passwordConfirmIpt)">visibility</mat-icon>
+      <mat-error *ngIf="form.get('passwordConfirm')?.touched && form.get('passwordConfirm')?.hasError('required')">
+        Campo Obrigatório!
+      </mat-error>
+    </mat-form-field>
+
+    <div class="register__action">
+      <button class="register__submit" type="submit" color="primary" mat-raised-button [disabled]="loading">
+        Cadastrar
+      </button>
+      <button class="register__back" routerLink="/login" mat-button>
+        Voltar
+      </button>
+    </div>
+  </form>
+</app-auth-container>

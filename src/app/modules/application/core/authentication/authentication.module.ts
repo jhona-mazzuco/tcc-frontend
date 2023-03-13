@@ -5,17 +5,20 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { NotificationModule } from "@shared/notification/notification.module";
 import { AuthenticationRoutingModule } from "./authentication.routing";
 import { AuthContainerComponent } from './components/auth-container/auth-container.component';
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
 import { LoginComponent } from "./components/login/login.component";
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     ForgotPasswordComponent,
-    AuthContainerComponent
+    AuthContainerComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import { LoginComponent } from "./components/login/login.component";
     MatButtonModule,
     MatIconModule,
     NotificationModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class AuthenticationModule {

@@ -2,12 +2,21 @@
   <h1>Selecione um campo:</h1>
 
   <ng-container *ngIf="items$ | async;let items ;else LoadingTemplate">
-    <ng-container *ngFor="let row of items">
-      <app-field-row [row]="row"></app-field-row>
+    <ng-container *ngIf="items.length;else EmptyTemplate">
+      <ng-container *ngFor="let row of items">
+        <app-field-row [row]="row"></app-field-row>
+      </ng-container>
     </ng-container>
   </ng-container>
 </div>
 
 <ng-template #LoadingTemplate>
   <app-loading></app-loading>
+</ng-template>
+
+<ng-template #EmptyTemplate>
+  <div class="field__empty">
+    <mat-icon>inbox</mat-icon>
+    O centro esportivo ainda não há um campo cadastrado!
+  </div>
 </ng-template>

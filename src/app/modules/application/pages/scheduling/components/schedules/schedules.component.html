@@ -1,5 +1,5 @@
 <app-day-select-container (onDaySelect)="onChangeDate($event)">
-  <ng-container *ngIf="items$ | async;let items; else LoadingTemplate">
+  <ng-container *ngIf="!loading else LoadingTemplate">
     <div class="schedules">
       <ng-container *ngFor="let item of items">
         <app-schedule-item [data]="item" [date]="date" [id]="id"></app-schedule-item>

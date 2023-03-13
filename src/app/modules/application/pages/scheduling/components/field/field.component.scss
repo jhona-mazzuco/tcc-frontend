@@ -2,4 +2,14 @@
 
 .field {
   @include card;
+
+  &__empty {
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: #989898;
+    gap: 8px;
+  }
 }

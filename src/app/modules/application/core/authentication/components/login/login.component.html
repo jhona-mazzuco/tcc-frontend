@@ -18,10 +18,12 @@
 
     <a class="login__forgot" routerLink="/login/recuperacao">Esqueceu sua senha? Clique aqui</a>
 
+    <a class="login__sign-up" routerLink="/login/cadastro" mat-button>Clique aqui para cadastrar</a>
+
     <span class="login__or">ou</span>
 
     <div class="login__authentication">
-      <button (click)="signInWithGoogleAccount()" class="login__auth-btn" mat-icon-button>
+      <button (click)="signInWithGoogleAccount()" class="login__auth-btn" mat-button>
         <mat-icon svgIcon="google"></mat-icon>
         Faça login com sua conta Google
       </button>

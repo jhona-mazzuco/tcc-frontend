@@ -32,6 +32,24 @@
     }
   }
 
+  &__sign-up {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    color: #000;
+    height: 50px;
+    margin: 0 1rem;
+    border: 1px solid #000;
+    border-radius: 5px;
+    transition: border-width 150ms;
+
+    &:hover {
+      cursor: pointer;
+      border-width: 2px;
+    }
+  }
+
   &__or {
     width: 100%;
     display: flex;
@@ -39,6 +57,7 @@
     align-items: center;
     color: #c5c5c5;
     font-weight: lighter;
+    margin: 5% 0;
 
     &:before, &:after {
       content: "";
@@ -66,8 +85,7 @@
   &__authentication {
     display: flex;
     justify-content: center;
-    padding: 1rem 5%;
-    gap: 2rem;
+    padding: 0 5%;
   }
 
   &__auth-btn {

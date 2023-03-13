@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { BaseComponent } from "@shared/models/base-component.directive";
 import { NotificationService } from "@shared/notification/notification.service";
-import { Observable } from "rxjs";
+import { catchError, finalize, takeUntil, tap } from "rxjs";
 import { SchedulingService } from "../../../../services/scheduling.service";
 import { Schedule } from "../../interfaces/schedule.interface";
 
@@ -15,8 +15,9 @@ import { Schedule } from "../../interfaces/schedule.interface";
 })
 export class SchedulesComponent extends BaseComponent implements OnInit, OnDestroy {
   id!: string;
-  items$!: Observable<Schedule[]>;
   date!: string;
+  loading!: boolean;
+  items!: Schedule[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,6 +33,13 @@ export class SchedulesComponent extends BaseComponent implements OnInit, OnDestr
 
   onChangeDate(date: string | null): void {
     this.date = date!;
-    this.items$ = this.schedulingService.getSchedulesOfDay(this.id, date!);
+    this.loading = true;
+    this.schedulingService.getSchedulesOfDay(this.id, date!)
+      .pipe(
+        takeUntil(this.destroy$),
+        tap((data) => this.items = data!),
+        catchError(() => this.catchError()),
+        finalize(() => this.loading = false)
+      ).subscribe();
   }
 }

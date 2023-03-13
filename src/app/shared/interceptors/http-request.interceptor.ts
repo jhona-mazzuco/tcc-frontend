@@ -13,7 +13,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     return next.handle(
       request.clone({
         setHeaders: {
-          Authorization: `Bearer ${ this.service.currentUser?.token }`
+          'Access-Control-Allow-Headers': '*',
+          Authorization: this.service.currentUser ? `Bearer ${ this.service.currentUser.token }` : ''
         }
       })
     );
